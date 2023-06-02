@@ -1,0 +1,93 @@
+USE [master]
+GO
+/* For security reasons the login is created disabled and with a random password. */
+/****** Object:  Login [##MS_PolicyEventProcessingLogin##]    Script Date: 8/5/2023 08:27:34 ******/
+CREATE LOGIN [##MS_PolicyEventProcessingLogin##] WITH PASSWORD=N'+HOfBBLJTaqxf2s2/0hD4/Pko21QX1MGU+5QdCZzBwk=', DEFAULT_DATABASE=[master], DEFAULT_LANGUAGE=[us_english], CHECK_EXPIRATION=OFF, CHECK_POLICY=ON
+GO
+ALTER LOGIN [##MS_PolicyEventProcessingLogin##] DISABLE
+GO
+/* For security reasons the login is created disabled and with a random password. */
+/****** Object:  Login [##MS_PolicyTsqlExecutionLogin##]    Script Date: 8/5/2023 08:27:34 ******/
+CREATE LOGIN [##MS_PolicyTsqlExecutionLogin##] WITH PASSWORD=N'3Gy38h3c1WzSb192aDqxqAaGJe3Dw5FBW1uMyiYx6h4=', DEFAULT_DATABASE=[master], DEFAULT_LANGUAGE=[us_english], CHECK_EXPIRATION=OFF, CHECK_POLICY=ON
+GO
+ALTER LOGIN [##MS_PolicyTsqlExecutionLogin##] DISABLE
+GO
+/****** Object:  Login [ALMAGRO\Domain Users]    Script Date: 8/5/2023 08:27:34 ******/
+CREATE LOGIN [ALMAGRO\Domain Users] FROM WINDOWS WITH DEFAULT_DATABASE=[master], DEFAULT_LANGUAGE=[us_english]
+GO
+/****** Object:  Login [ALMAGRO\e.Informatica]    Script Date: 8/5/2023 08:27:34 ******/
+CREATE LOGIN [ALMAGRO\e.Informatica] FROM WINDOWS WITH DEFAULT_DATABASE=[master], DEFAULT_LANGUAGE=[us_english]
+GO
+/* For security reasons the login is created disabled and with a random password. */
+/****** Object:  Login [alumno]    Script Date: 8/5/2023 08:27:34 ******/
+CREATE LOGIN [alumno] WITH PASSWORD=N'qRqw84Fmr8waxc8u4YG1PFM2cFhr6/aJ/VYQvcS8TJ0=', DEFAULT_DATABASE=[master], DEFAULT_LANGUAGE=[us_english], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
+GO
+ALTER LOGIN [alumno] DISABLE
+GO
+/****** Object:  Login [BUILTIN\Usuarios]    Script Date: 8/5/2023 08:27:34 ******/
+CREATE LOGIN [BUILTIN\Usuarios] FROM WINDOWS WITH DEFAULT_DATABASE=[master], DEFAULT_LANGUAGE=[us_english]
+GO
+/****** Object:  Login [NT AUTHORITY\SYSTEM]    Script Date: 8/5/2023 08:27:34 ******/
+CREATE LOGIN [NT AUTHORITY\SYSTEM] FROM WINDOWS WITH DEFAULT_DATABASE=[master], DEFAULT_LANGUAGE=[us_english]
+GO
+/****** Object:  Login [NT Service\MSSQLSERVER]    Script Date: 8/5/2023 08:27:34 ******/
+CREATE LOGIN [NT Service\MSSQLSERVER] FROM WINDOWS WITH DEFAULT_DATABASE=[master], DEFAULT_LANGUAGE=[us_english]
+GO
+/****** Object:  Login [NT SERVICE\SQLSERVERAGENT]    Script Date: 8/5/2023 08:27:34 ******/
+CREATE LOGIN [NT SERVICE\SQLSERVERAGENT] FROM WINDOWS WITH DEFAULT_DATABASE=[master], DEFAULT_LANGUAGE=[us_english]
+GO
+/****** Object:  Login [NT SERVICE\SQLTELEMETRY]    Script Date: 8/5/2023 08:27:34 ******/
+CREATE LOGIN [NT SERVICE\SQLTELEMETRY] FROM WINDOWS WITH DEFAULT_DATABASE=[master], DEFAULT_LANGUAGE=[us_english]
+GO
+/****** Object:  Login [NT SERVICE\SQLWriter]    Script Date: 8/5/2023 08:27:34 ******/
+CREATE LOGIN [NT SERVICE\SQLWriter] FROM WINDOWS WITH DEFAULT_DATABASE=[master], DEFAULT_LANGUAGE=[us_english]
+GO
+/****** Object:  Login [NT SERVICE\Winmgmt]    Script Date: 8/5/2023 08:27:34 ******/
+CREATE LOGIN [NT SERVICE\Winmgmt] FROM WINDOWS WITH DEFAULT_DATABASE=[master], DEFAULT_LANGUAGE=[us_english]
+GO
+/* For security reasons the login is created disabled and with a random password. */
+/****** Object:  Login [Pizzas]    Script Date: 8/5/2023 08:27:34 ******/
+CREATE LOGIN [Pizzas] WITH PASSWORD=N'w3iK7Arn8uReKZyNe54u89FFsWapbR1PWgpcRwfvsbM=', DEFAULT_DATABASE=[DAI-Pizzas], DEFAULT_LANGUAGE=[us_english], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
+GO
+ALTER LOGIN [Pizzas] DISABLE
+GO
+ALTER SERVER ROLE [sysadmin] ADD MEMBER [ALMAGRO\Domain Users]
+GO
+ALTER SERVER ROLE [securityadmin] ADD MEMBER [ALMAGRO\Domain Users]
+GO
+ALTER SERVER ROLE [serveradmin] ADD MEMBER [ALMAGRO\Domain Users]
+GO
+ALTER SERVER ROLE [setupadmin] ADD MEMBER [ALMAGRO\Domain Users]
+GO
+ALTER SERVER ROLE [processadmin] ADD MEMBER [ALMAGRO\Domain Users]
+GO
+ALTER SERVER ROLE [diskadmin] ADD MEMBER [ALMAGRO\Domain Users]
+GO
+ALTER SERVER ROLE [dbcreator] ADD MEMBER [ALMAGRO\Domain Users]
+GO
+ALTER SERVER ROLE [bulkadmin] ADD MEMBER [ALMAGRO\Domain Users]
+GO
+ALTER SERVER ROLE [sysadmin] ADD MEMBER [alumno]
+GO
+ALTER SERVER ROLE [securityadmin] ADD MEMBER [alumno]
+GO
+ALTER SERVER ROLE [serveradmin] ADD MEMBER [alumno]
+GO
+ALTER SERVER ROLE [setupadmin] ADD MEMBER [alumno]
+GO
+ALTER SERVER ROLE [processadmin] ADD MEMBER [alumno]
+GO
+ALTER SERVER ROLE [diskadmin] ADD MEMBER [alumno]
+GO
+ALTER SERVER ROLE [dbcreator] ADD MEMBER [alumno]
+GO
+ALTER SERVER ROLE [bulkadmin] ADD MEMBER [alumno]
+GO
+ALTER SERVER ROLE [sysadmin] ADD MEMBER [NT Service\MSSQLSERVER]
+GO
+ALTER SERVER ROLE [sysadmin] ADD MEMBER [NT SERVICE\SQLSERVERAGENT]
+GO
+ALTER SERVER ROLE [sysadmin] ADD MEMBER [NT SERVICE\SQLWriter]
+GO
+ALTER SERVER ROLE [sysadmin] ADD MEMBER [NT SERVICE\Winmgmt]
+GO
