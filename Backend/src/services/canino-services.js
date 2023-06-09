@@ -77,18 +77,16 @@ getByIdUsuario = async (IdUsuario) =>{
     try{
         let pool = await sql.connect(config);
         let result = await pool.request()
-            // .input('pId', sql.Int, id)
-            // .query('SELECT * FROM Pizzas WHERE Id = @pId');
             .input('pIdUsuario', sql.Int, IdUsuario)
             .query('SELECT Mascota.* FROM Mascota INNER JOIN UsuariosXMascotas ON UsuariosXMascotas.IdMascota = Mascota.Id WHERE UsuariosXMascotas.IdUsuario = @pIdUsuario');
-            returnList = result.recordsets[0] // devuelve el primer elemento del primer request del query
+            returnList = result.recordsets[0] 
     } catch (e){
         console.log(e);
         CopiaError(e.toString() + " AT CaninoSevice../getByIdUsuario");
     }
     console.log(returnList);
     return returnList;
-    // console.log(returnPizza)
+    
 }
 
 insert = async (canino) => {
