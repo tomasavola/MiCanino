@@ -108,3 +108,9 @@ ConnectionError: Login failed for user 'Pizzas'. AT CaninoService/Insert
 ConnectionError: Login failed for user 'Pizzas'. AT CaninoService/Insert
 ConnectionError: Login failed for user 'Pizzas'. AT CaninoService/Insert
 ConnectionError: Login failed for user 'Pizzas'. AT CaninoService/Insert
+ConnectionError: Login failed for user 'Pizzas'. AT CaninoService/Insert
+ConnectionError: Login failed for user 'Pizzas'. AT CaninoService/Insert
+ConnectionError: Login failed for user 'Pizzas'. AT CaninoService/Insert
+ConnectionError: Login failed for user 'Mascota'.  Reason: The password of the account must be changed. AT CaninoService/Insert
+RequestError: Validation failed for parameter 'IdRaza'. Invalid string. AT CaninoService/Insert
+RequestError: Could not find stored procedure 'sp_Insert'. AT CaninoService/Insert
