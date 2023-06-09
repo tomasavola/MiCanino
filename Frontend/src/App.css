@@ -36,7 +36,9 @@
     transform: rotate(360deg);
   }
 }
-
+ body{
+  background-color: #E7D0AE;
+}
 * {
   margin: 0;
   padding: 0;
@@ -45,14 +47,15 @@
 
 .form-register {
   width: 400px;
-  background: #24303c;
+  background: #E7D0AE;
   padding: 30px;
   margin: auto;
-  margin-top: 100px;
   border-radius: 4px;
+  margin-bottom: 200%;
+  
   font-family: 'calibri';
   color: white;
-  box-shadow: 7px 13px 37px #000;
+
 }
 
 .form-register h4 {
@@ -62,14 +65,14 @@
 
 .controls {
   width: 100%;
-  background: #24303c;
+  background: #fff;
   padding: 10px;
-  border-radius: 4px;
+  border-radius: 15px;
   margin-bottom: 16px;
-  border: 1px solid #1f53c5;
+  border: 1px solid #E7D0AE;
   font-family: 'calibri';
   font-size: 18px;
-  color: white;
+  color: black;
 }
 
 .form-register p {
@@ -80,21 +83,37 @@
 }
 
 .form-register a {
-  color: white;
+  color: black;
   text-decoration: none;
 }
 
 .form-register a:hover {
-  color: white;
+  color: black;
   text-decoration: underline;
 }
 
 .form-register .botons {
-  width: 100%;
+  width: 60%;
   background: #1f53c5;
   border: none;
   padding: 12px;
   color: white;
-  margin: 16px 0;
   font-size: 16px;
+  border-radius: 15px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 5%;
+
+}
+
+.letraNegra {
+  color: black;
+}
+
+.logo{
+  width: 270px;
+  height: 270px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10%;
 }
