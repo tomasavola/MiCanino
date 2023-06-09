@@ -39,24 +39,24 @@ export default function FormularioMascota({onAgregarMascota}) {
             {}
 
             <label>Nombre</label>
-            <input type="text" name="nombre" className="u-full-width" placeholder="Nombre" onChange={(i) => setNombre(i.target.value)}/>
+            <input type="text" name="nombre" className="controls" placeholder="Nombre" onChange={(i) => setNombre(i.target.value)}/>
             <label>Fecha de nacimiento</label>
-            <input type="text" name="fecha" className="u-full-width" placeholder="Fecha de nacimiento" onChange={(i) => setFecha(i.target.value)}/>
+            <input type="Date" name="fecha" className="controls" placeholder="Fecha de nacimiento" onChange={(i) => setFecha(i.target.value)}/>
             <label>Raza</label>
-            <input type="time" name="idRaza" className="u-full-width" placeholder="Raza" onChange={(i) => setIdRaza(i.target.value)}/>
+            <input type="text" name="idRaza" className="controls" placeholder="Raza" onChange={(i) => setIdRaza(i.target.value)}/>
             <label>Descripcion</label>  
-            <textarea name="descripcion" className="u-full-width" placeholder="Descripcion" onChange={(i) => setDescripcion(i.target.value)}></textarea>
+            <textarea name="descripcion" className="controls" placeholder="Descripcion" onChange={(i) => setDescripcion(i.target.value)}></textarea>
             <label>Peso en kilos</label>  
-            <textarea name="peso" className="u-full-width" placeholder="Peso (KG)" onChange={(i) => setPeso(i.target.value)}></textarea>
+            <textarea name="peso" className="controls" placeholder="Peso (KG)" onChange={(i) => setPeso(i.target.value)}></textarea>
             <label>Foto</label>
-            <input type="time" name="foto" className="u-full-width" placeholder="Inserte una foto del canino" onChange={(i) => setFoto(i.target.value)}/>
+            <input type="file" name="foto" className="controls" placeholder="Inserte una foto del canino" onChange={(i) => setFoto(i.target.value)}/>
             <label>Partida de nacimiento</label>  
-            <textarea name="partida" className="u-full-width" placeholder="Inserte una foto de la partida de nacimiento del canino" onChange={(i) => setPartida(i.target.value)}></textarea>
+            <input type="file" name="partida" className="controls" placeholder="Inserte una foto de la partida de nacimiento del canino" onChange={(i) => setPartida(i.target.value)}></input>
             <label>Carnet de vacunacion</label>  
-            <textarea name="carnet" className="u-full-width" placeholder="Inserte una foto del carnet de vacunacion del canino" onChange={(i) => setCarnet(i.target.value)}></textarea>         
+            <input type="file"name="carnet" className="controls" placeholder="Inserte una foto del carnet de vacunacion del canino" onChange={(i) => setCarnet(i.target.value)}></input>         
          
 
-            <button type="submit" className="u-full-width button-primary">Crear mascota</button>
+            <button type="submit" className="botons">Crear mascota</button>
 
         </form>
     </>
