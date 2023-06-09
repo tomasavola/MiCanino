@@ -99,3 +99,12 @@ RequestError: Validation failed for parameter 'pId'. Invalid number. AT PizzaSer
 RequestError: Validation failed for parameter 'pId'. Invalid number. AT PizzaService/GetById
 RequestError: Incorrect syntax near 'fdfd'. AT PizzaService/GetAll
 RequestError: Incorrect syntax near 'fdfd'. AT PizzaService/GetAll
+ConnectionError: Login failed for user 'Pizzas'. AT CaninoService/Insert
+ConnectionError: Login failed for user 'Pizzas'. AT CaninoService/Insert
+ConnectionError: Login failed for user 'Pizzas'. AT CaninoService/Insert
+ConnectionError: Login failed for user 'Pizzas'. AT CaninoService/Insert
+ConnectionError: Login failed for user 'Pizzas'. AT CaninoService/Insert
+ConnectionError: Login failed for user 'Pizzas'. AT CaninoService/Insert
+ConnectionError: Login failed for user 'Pizzas'. AT CaninoService/Insert
+ConnectionError: Login failed for user 'Pizzas'. AT CaninoService/Insert
+ConnectionError: Login failed for user 'Pizzas'. AT CaninoService/Insert

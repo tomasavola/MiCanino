@@ -1,7 +1,7 @@
 // npm run server
 import express from "express";
 import cors    from "cors";
-import CaninoService from './src/services/canino-services'
+import CaninoService from "./src/services/canino-services.js";
 
 //
 // Variables/Constantes del Modulo
@@ -71,11 +71,10 @@ app.delete('/api/pizzas/:id', async (req, res) => {
 
   return res.status(200).json(pizza);
 });
-
+*/
 //
 // Levanto el servidor WEB (pongo a escuchar)
 //
 app.listen(port, () => {
   console.log(`"server" Listening on port ${port}`);
 });
-*/

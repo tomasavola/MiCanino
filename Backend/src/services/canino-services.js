@@ -61,7 +61,6 @@ export default class PizzaService {
                 .input('Foto', sql.VarChar, canino.foto)
                 .input('PartidaNacimiento', sql.VarChar, canino.partidaNacimiento)
                 .input('CarnetVacunacion', sql.VarChar, canino.carnetVacunacion)
-
                 .query('exec sp_Insert @Nombre = @nombre, @FechaNacimiento = @fechaNacimiento, @Descripcion = @descripcion, @Peso = @peso, @IdRaza = @idRaza, @Foto = @foto, @PartidaNacimiento = @partidaNacimiento, @CarnetVacunacion = @carnetVacunacion ');
             rowsAffected = result.rowsAffected; // devuelve la cantidad de registros afectados (1 en caso de haberse creado correctamente el canino)
             console.log('Canino creada')
