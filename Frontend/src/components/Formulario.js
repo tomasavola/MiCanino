@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 export default function Formulario({onAgregarCuenta}) {
 
@@ -37,13 +38,13 @@ export default function Formulario({onAgregarCuenta}) {
             <label className="letraNegra">Apellido</label>
             <input type="text" name="apellido" className="controls" placeholder="Apellido" onChange={(i) => setApellido(i.target.value)}/>
             <label className="letraNegra">Correo electrónico</label>
-            <input type="time" name="mail" className="controls" placeholder="Correo" onChange={(i) => setMail(i.target.value)}/>
+            <input type="text" name="mail" className="controls" placeholder="Correo" onChange={(i) => setMail(i.target.value)}/>
             <label className="letraNegra">Telefono</label>  
             <textarea name="telefono" className="controls" placeholder="Telefono" onChange={(i) => setTelefono(i.target.value)}></textarea>
             <label className="letraNegra">Contraseña</label>  
-            <textarea name="sintomas"className="controls" placeholder="Contraseña" onChange={(i) => setContrasena(i.target.value)}></textarea>         
+            <textarea name="contrasena"className="controls" placeholder="Contraseña" onChange={(i) => setContrasena(i.target.value)}></textarea>         
 
-            <button type="submit" className="u-full-width button-primary">Crear cuenta</button>
+            <button type="submit" className="botons">Crear cuenta</button>
 
         </form>
     </>
