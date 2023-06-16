@@ -28,4 +28,18 @@ router.get('/usuario/:idUsuario', async (req, res) =>{
     }
 })
 
+/*PREGUNTAR POR EL END POINT*/
+
+router.get('/', async (req, res) => {
+    try {
+      let pool = await caninoService.connect(config);
+      let result = await pool.request().query('SELECT * FROM Mascotas');
+      res.json(result.recordsets[0]); 
+    } catch (error) {
+      console.log(error);
+      res.status(500).send('Error al obtener las mascotas');
+    }
+  });
+  
+
 export default router;
