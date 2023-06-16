@@ -6,27 +6,28 @@ import Pizza from "../models/canino.js";
 export default class CaninoService {
 
     getAll = async () => {
-        console.log("GetAll")
-        let returnEntity = null;
+        console.log("getAll")
+        let returnList = null;
         try {
             let pool = await sql.connect(config);
             let result = await pool.request()
-                .query('SELECT * FROM Mascotas');
-            returnEntity = result.recordsets;
+                .query('SELECT * FROM Mascota');
+                returnList = result.recordset;
         } catch (error) {
             console.log(error);
             Escribir(error);
         }
-        return returnEntity;
+        return returnList;
     }
 
     getById = async (id) => {
+        console.log('getById')
         let returnEntity = null;
         try {
             let pool = await sql.connect(config);
             let result = await pool.request()
                 .input('pId', sql.Int, id)
-                .query('SELECT * FROM Mascotas WHERE id = @pId');
+                .query('SELECT * FROM Mascota WHERE id = @pId');
             returnEntity = result.recordsets[0][0]
         } catch (error) {
             console.log(error);
@@ -36,7 +37,7 @@ export default class CaninoService {
 
     getByIdUsuario = async (IdUsuario) => {
         let returnList = null;
-        console.log('GetByIdUsuario')
+        console.log('getByIdUsuario')
         try {
             let pool = await sql.connect(config);
             let result = await pool.request()
@@ -54,12 +55,12 @@ export default class CaninoService {
 
     insert = async (canino) => {
         let rowsAffected = 0;
-        console.log('INSERT');
+        console.log('insert')
         try {
             let pool = await sql.connect(config);
             let result = await pool.request()
                 .input('pNombre', sql.VarChar, canino?.nombre ?? '')
-                .input('pFechaNacimiento', sql.DateTime, canino?.fechaNacimiento ?? '')
+                .input('pFechaNacimiento', sql.DateTime, canino?.fecha ?? '')
                 .input('pDescripcion', sql.VarChar, canino?.descripcion ?? '')
                 .input('pPeso', sql.Float, canino?.peso ?? '')
                 .input('pFoto', sql.VarChar, canino?.foto ?? '')
@@ -72,4 +73,26 @@ export default class CaninoService {
         }
         return rowsAffected;
     }
+
+    update = async (canino) => {
+        console.log('update')
+        let rowsAffected = 0;
+        try {
+            let pool = await sql.connect(config);
+            let result = await pool.request()
+            .input('pNombre', sql.VarChar, canino?.nombre ?? '')
+            .input('pFechaNacimiento', sql.DateTime, canino?.fecha ?? '')
+            .input('pDescripcion', sql.VarChar, canino?.descripcion ?? '')
+            .input('pPeso', sql.Float, canino?.peso ?? '')
+            .input('pFoto', sql.VarChar, canino?.foto ?? '')
+            .input('pPartidaNacimiento', sql.VarChar, canino?.partidaNacimiento ?? '')
+            .input('pCarnetVacunacion', sql.VarChar, canino?.carnetVacunacion ?? '')
+            .query('update Mascota SET Nombre = @pNombre, FechaNacimiento = @pFechaNacimiento, Descripcion = @pDescripcion, Peso = @pPeso, Foto =  @pFoto, PartidaNacimiento =  @pPartidaNacimiento, CarnetVacunacion = @pCarnetVacunacion   WHERE Id = @pId');
+            rowsAffected = result.rowsAffected;
+        } catch (error) {
+            console.log(error);
+        }
+        return rowsAffected;
+    }
 }
+

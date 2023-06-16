@@ -7,16 +7,28 @@ let caninoService = new CaninoService();
 
 const router = new Router();
 
-router.post('', async (req, res) =>{
+router.post('/', async (req, res) =>{
     try{
         let caninoNuevo = req.body;
         console.log(caninoNuevo);
         let rowsAffected = await caninoService.insert(caninoNuevo);
-        res.status(200).json({resultado: true, id : 23});    
+        res.status(200).json({resultado: true});    
     }catch(e){
         res.status(404).json({resultado: false});   
     }
 })
+
+router.put('/:id', async (req, res) => {
+    try{
+        let caninoNuevo = req.body;
+        console.log(caninoNuevo);
+        let rowsAffected = await caninoService.update(caninoNuevo);
+        res.status(200).json({resultado: true});    
+    }catch(e){
+        res.status(404).json({resultado: false});   
+    }tatus(404).send('<p>No se encontro el canino</p>');
+    }
+  );
 
 router.get('/usuario/:idUsuario', async (req, res) =>{
     try{
@@ -31,15 +43,26 @@ router.get('/usuario/:idUsuario', async (req, res) =>{
 /*PREGUNTAR POR EL END POINT*/
 
 router.get('/', async (req, res) => {
-    try {
-      let pool = await caninoService.connect(config);
-      let result = await pool.request().query('SELECT * FROM Mascotas');
-      res.json(result.recordsets[0]); 
-    } catch (error) {
-      console.log(error);
-      res.status(500).send('Error al obtener las mascotas');
+    try{
+        let caninos = await caninoService.getAll();
+        res.status(200).send(caninos);
+    }catch(e){
+        console.log(e);
+        res.status(404).send('<p>No se encontro el canino</p>');
     }
   });
+
+  router.get('/:id', async (req, res) => {
+    try{
+        let caninos = await caninoService.getById(req.params.id);
+        res.status(200).send(caninos);
+    }catch(e){
+        console.log(e);
+        res.status(404).send('<p>No se encontro el canino</p>');
+    }
+  });
+
+ 
   
 
 export default router;
