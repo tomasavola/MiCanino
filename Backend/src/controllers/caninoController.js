@@ -12,9 +12,9 @@ router.post('', async (req, res) =>{
         let caninoNuevo = req.body;
         console.log(caninoNuevo);
         let rowsAffected = await caninoService.insert(caninoNuevo);
-        res.status(200).send('<p>Se creo ' + rowsAffected[0] +' canino</p>');    
+        res.status(200).json({resultado: true, id : 23});    
     }catch(e){
-        res.status(404).send('<p>No se pudo crear el canino</p>');   
+        res.status(404).json({resultado: false});   
     }
 })
 

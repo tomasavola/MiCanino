@@ -1,27 +1,17 @@
-// import Pizza from "../src/models/pizza";
-/*
-function getAll(){
-    let top = document.getElementById("top").value
-    let orderField = document.getElementById("orderField").value
-    let sortOrder = document.getElementById("sortOrder").value
-    console.log(top)
 
-    axios
-    .get("http://localhost:3000/Pizzas?"+(top != "" ? "top="+top : undefined)+"&"+(orderField != "" ? "oderField="+orderField : undefined)+"&"+(sortOrder != "" ? "sortOrder"+sortOrder : undefined))
-    // .get("http://localhost:3000/Pizzas/getAll")
-    .then((result) => {   
-        let listaPizzas = ''; 
-        result.data.map((pizza) =>{            
-            listaPizzas += `<li class="list-group-item active">${pizza.Nombre}</li>`;          
-        })
-        document.getElementById("lista-get-pizzas").innerHTML = `
-            ${listaPizzas}
-        `;
-    })
-    .catch((error) => {
+
+function getAll(){
+    let url = BASE_URL_PIZZAS;
+    console.log('getAll: ', url);
+    axios.get(url)
+      .then((response) => {
+        console.log(response.data);
+        displayPizzas(response.data);
+      })
+      .catch(error => {
         console.log(error);
-    });
-}
+      });
+  }
 
 function getById(){
     let id = document.getElementById("idGet").value;
@@ -44,6 +34,7 @@ function getById(){
     });
 }
 
+/*
 function deleteById(){
     let id = document.getElementById("idDelete").value
     console.log(id)
