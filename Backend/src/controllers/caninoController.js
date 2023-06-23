@@ -5,6 +5,7 @@ import express, { Router } from "express";
 import cors from "cors"
 
 let caninoService = new CaninoService();
+let usuarioXmascotaService = new UsuarioXmascotaService();
 
 const router = new Router();
 
@@ -41,7 +42,6 @@ router.get('/usuario/:idUsuario', async (req, res) =>{
     }
 })
 
-/*PREGUNTAR POR EL END POINT*/
 
 router.get('/', async (req, res) => {
     try{
@@ -66,7 +66,7 @@ router.get('/', async (req, res) => {
   router.delete('/:id', async (req, res) => {
     try {
       console.log("Estoy en el endpoint");
-      await UsuarioXmascotaService.deleteById(req.params.id);
+      await usuarioXmascotaService.deleteById(req.params.id);
       let canino = await caninoService.deleteById(req.params.id);
       console.log("canino:");
       console.log(canino);
@@ -76,4 +76,4 @@ router.get('/', async (req, res) => {
       res.status(404).send('<p>No se pudo eliminar el canino</p>');
     }
   });
-export default router;
+export default router;                                                                                                                               
