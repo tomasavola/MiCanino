@@ -87,6 +87,7 @@ export default class CaninoService {
             .input('pFoto', sql.VarChar, canino?.foto ?? '')
             .input('pPartidaNacimiento', sql.VarChar, canino?.partidaNacimiento ?? '')
             .input('pCarnetVacunacion', sql.VarChar, canino?.carnetVacunacion ?? '')
+            .input('pId', sql.Float, canino?.id ?? '')
             .query('update Mascota SET Nombre = @pNombre, FechaNacimiento = @pFechaNacimiento, Descripcion = @pDescripcion, Peso = @pPeso, Foto =  @pFoto, PartidaNacimiento =  @pPartidaNacimiento, CarnetVacunacion = @pCarnetVacunacion   WHERE Id = @pId');
             rowsAffected = result.rowsAffected;
         } catch (error) {

@@ -26,7 +26,7 @@ router.put('/:id', async (req, res) => {
         res.status(200).json({resultado: true});    
     }catch(e){
         res.status(404).json({resultado: false});   
-    }tatus(404).send('<p>No se encontro el canino</p>');
+    }res.status(404).send('<p>No se actualizo el canino</p>');
     }
   );
 
