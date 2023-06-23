@@ -1,27 +1,27 @@
 import React from 'react'
 import './NavBar.css';
 import { FaHome, FaAmbulance, FaDog, FaGripLines } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
-
-export default function Navbar() {
-    return (
-        <nav className="navigation">
-            <div className="navigation-menu">
-                <ul>
-                    <li>
-                        <a href="/Home"><FaHome /></a>
-                    </li>
-                    <li>
-                        <a href="/Salud"><FaAmbulance /></a>
-                    </li>
-                    <li>
-                        <a href="/PerfilMascota"><FaDog /></a>
-                    </li>
-                    <li>
-                        <a href="/Otros"><FaGripLines /></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    );
+export default function NavBar() {
+  return (
+    <nav className="navigation">
+      <div className="navigation-menu">
+        <ul>
+          <li>
+            <Link to="/Home"><FaHome size={50} /></Link>
+          </li>
+          <li>
+            <Link to="/Salud"><FaAmbulance size={50} /></Link>
+          </li>
+          <li>
+            <Link to="/PerfilMascota"><FaDog size={50}/></Link>
+          </li>
+          <li>
+            <Link to="/Otros"><FaGripLines size={50}/></Link>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  );
 }

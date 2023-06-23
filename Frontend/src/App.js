@@ -16,13 +16,13 @@ import Otros from './components/Otros';
 function App() {
   const [arrayMascotas, setArrayMascotas] = useState([{ id: 0, nombre: "", fecha: "", descripcion: "", peso: 0 }]);
   const [arrayCuentas, setArrayCuentas] = useState([{ id: 0, nombre: "", apellido: "", mail: "", telefono: "", contrasena: "" }]);
+  let HOST = 'A-PHZ2-CIDI-005'
 
   function AgregarMascota(mascota) {
     console.log("hola");
     console.log(mascota);
-    let host = 'A-PHZ2-CIDI-005' //ponerlo en los url de las api
 
-    axios.post('http://A-PHZ2-CIDI-005:5000/api/caninos/', mascota)
+    axios.post('http://' + HOST + ':5000/api/caninos/', mascota)
       .then(response => {
         console.log(response.status);
       })
@@ -33,7 +33,7 @@ function App() {
 
   function AgregarCuenta(cuenta) {
     console.log(cuenta);
-    axios.post('http://10.152.2.107:5000/api/caninos/usuario', cuenta)
+    axios.post('http://' + HOST + ':5000/api/caninos/usuario', cuenta)
       .then(response => {
         console.log(response.status);
       })
@@ -44,7 +44,7 @@ function App() {
 
   function IngresarCuenta(cuenta) {
     console.log(cuenta);
-    axios.post('http://10.152.2.107:5000/api/caninos/', cuenta)
+    axios.post('http://' + HOST + ':5000/api/caninos/', cuenta)
       .then(response => {
         console.log(response.status);
       })
@@ -100,8 +100,6 @@ function App() {
 
         <Route path="/Home" element={
           <>
-            <Logo />
-            <NavBar />
             <div className="container">
               <div className="row">
                 <div className="form-register">
@@ -114,8 +112,6 @@ function App() {
 
         <Route path="/Salud" element={
           <>
-            <Logo />
-            <NavBar />
             <div className="container">
               <div className="row">
                 <div className="form-register">
@@ -128,8 +124,6 @@ function App() {
 
         <Route path="/PerfilMascota" element={
           <>
-            <Logo />
-            <NavBar />
             <div className="container">
               <div className="row">
                 <div className="form-register">
@@ -142,8 +136,6 @@ function App() {
 
         <Route path="/Otros" element={
           <>
-            <Logo />
-            <NavBar />
             <div className="container">
               <div className="row">
                 <div className="form-register">

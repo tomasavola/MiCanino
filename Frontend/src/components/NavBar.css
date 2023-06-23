@@ -3,12 +3,14 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #f1f1f1;
+  background-color: #E7D0AE;
+  z-index: 999; /* Agrega un índice z alto para asegurarte de que el navbar esté por encima de otros elementos */
 }
 
 .navigation-menu {
   display: flex;
   justify-content: center;
+  padding: 10px; /* Agrega un espacio interno para separar los elementos del navbar */
 }
 
 .navigation ul {
@@ -19,7 +21,7 @@
 }
 
 .navigation li {
-  margin: 0 10px;
+  margin: 0 20px;
 }
 
 .navigation a {
@@ -27,3 +29,9 @@
   text-decoration: none;
   font-size: 20px;
 }
+
+/* Asegura que el contenido principal no se solape con el navbar */
+.container {
+  padding-bottom: 50px; /* Ajusta el valor según el alto del navbar para evitar que se solape con el contenido */
+}
+

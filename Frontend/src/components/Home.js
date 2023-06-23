@@ -5,6 +5,8 @@ import NavBar from "./NavBar";
 
 
 export default function Home() {
-    <NavBar />
+    return (
+        <NavBar />
+        )
 
 }
