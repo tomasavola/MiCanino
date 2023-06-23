@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function FormularioMascota({ onAgregarMascota }) {
 
@@ -33,6 +34,7 @@ export default function FormularioMascota({ onAgregarMascota }) {
         onAgregarMascota(mascota)
 
     }
+    const navigate = useNavigate();
     /*<label>Foto</label> ESTO VA ABAJO EN EL FORM
     <input type="file" name="foto" className="controls" placeholder="Inserte una foto del canino" onChange={(i) => setFoto(i.target.value)}/>
     <label>Partida de nacimiento</label>  
@@ -55,7 +57,7 @@ export default function FormularioMascota({ onAgregarMascota }) {
                 <label className="letraNegra">Peso en kilos</label>
                 <textarea name="peso" className="controls" placeholder="Peso (KG)" onChange={(i) => setPeso(i.target.value)}></textarea>
 
-                <button type="submit" className="botons">Crear mascota</button>
+                <button type="submit" className="botons" onClick={() => navigate('/Home')}>Agregar Mascota</button>
             </form>
         </>
     );
