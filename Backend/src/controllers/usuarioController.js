@@ -16,6 +16,17 @@ router.post('/', async (req, res) =>{
     }catch(e){
         res.status(404).json({resultado: false});   
     }
-})
+});
 
+router.put('/:id', async (req, res) => {
+    try{
+        let usuarioNuevo = req.body;
+        console.log(usuarioNuevo);
+        let rowsAffected = await usuarioService.update(usuarioNuevo);
+        res.status(200).json({resultado: true});    
+    }catch(e){
+        res.status(404).json({resultado: false});   
+    }res.status(404).send('<p>No se actualizo el usuario</p>');
+    }
+  );
 export default router;
