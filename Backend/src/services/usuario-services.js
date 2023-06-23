@@ -12,9 +12,9 @@ insert = async (usuario) => {
         let pool = await sql.connect(config);
         let result = await pool.request()
             .input('pNombre', sql.VarChar, usuario?.nombre ?? '')
-            .input('pApellido', sql.DateTime, usuario?.apellido ?? '')
+            .input('pApellido', sql.VarChar, usuario?.apellido ?? '')
             .input('pMail', sql.VarChar, usuario?.mail ?? '')
-            .input('pTelefono', sql.Float, usuario?.telefono ?? '')
+            .input('pTelefono', sql.Int, usuario?.telefono ?? '')
             .input('pPassword', sql.VarChar, usuario?.password ?? '')
             .query('insert into Usuario( Nombre, Apellido, Mail, Telefono, Password) VALUES ( @pNombre, @pApellido, @pMail, @pTelefono, @pPassword)');
         rowsAffected = result.rowsAffected;
@@ -23,4 +23,5 @@ insert = async (usuario) => {
     }
     return rowsAffected;
 }
+
 }

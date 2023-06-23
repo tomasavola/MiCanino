@@ -1,4 +1,4 @@
-import CaninoService from "../services/usuario-services.js";
+import UsuarioService from "../services/usuario-services.js";
 import Canino from "../models/usuario.js";
 import express, { Router } from "express";
 import cors from "cors"
