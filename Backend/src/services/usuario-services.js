@@ -1,4 +1,26 @@
 import config from "../../dbconfig.js";
 import sql from 'mssql';
 import CopiaError from "../modules/log-helper.js";
-import Pizza from "../models/usuario.js";
+//import Pizza from "../models/usuario.js";
+
+export default class UsuarioService {
+
+insert = async (usuario) => {
+    let rowsAffected = 0;
+    console.log('insert')
+    try {
+        let pool = await sql.connect(config);
+        let result = await pool.request()
+            .input('pNombre', sql.VarChar, usuario?.nombre ?? '')
+            .input('pApellido', sql.DateTime, usuario?.apellido ?? '')
+            .input('pMail', sql.VarChar, usuario?.mail ?? '')
+            .input('pTelefono', sql.Float, usuario?.telefono ?? '')
+            .input('pPassword', sql.VarChar, usuario?.password ?? '')
+            .query('insert into Usuario( Nombre, Apellido, Mail, Telefono, Password) VALUES ( @pNombre, @pApellido, @pMail, @pTelefono, @pPassword)');
+        rowsAffected = result.rowsAffected;
+    } catch (error) {
+        console.log(error);
+    }
+    return rowsAffected;
+}
+}

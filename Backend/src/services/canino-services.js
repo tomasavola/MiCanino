@@ -1,7 +1,7 @@
 import config from "../../dbconfig.js";
 import sql from 'mssql';
 import CopiaError from "../modules/log-helper.js";
-import Pizza from "../models/canino.js";
+//import Pizza from "../models/canino.js";
 
 export default class CaninoService {
 
