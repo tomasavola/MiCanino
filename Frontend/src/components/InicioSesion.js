@@ -29,7 +29,7 @@ export default function InicioSesion({ onIngresarCuenta }) {
                 <label className="letraNegra">Correo electrónico</label>
                 <input type="text" name="mail" className="controls" placeholder="Correo" onChange={(i) => setMail(i.target.value)} />
                 <label className="letraNegra">Contraseña</label>
-                <textarea name="contrasena" className="controls" placeholder="Contraseña" onChange={(i) => setContrasena(i.target.value)}></textarea>
+                <input type="text" name="contrasena" className="controls" placeholder="Contraseña" onChange={(i) => setContrasena(i.target.value)} />
 
                 <button type="submit" className="botons" onClick={() => navigate('/Home')}>Iniciar sesión</button>
             </form>

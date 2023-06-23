@@ -1,7 +1,9 @@
 import React from 'react'
+import NavBar from "./NavBar";
+
 
 export default function PerfilMascota() {
-  return (
-    <div>PerfilMascota</div>
-  )
+    return (
+        <NavBar />
+        )
 }
