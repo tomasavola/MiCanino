@@ -95,5 +95,25 @@ export default class CaninoService {
         }
         return rowsAffected;
     }
+
+    deleteById = async (id) => {
+        console.log('delete')
+        console.log('id', id);
+        let rowsAffected = 0;
+        try {
+            let pool = await sql.connect(config);
+            let result = await pool.request()
+                .input('pId', sql.Int, id)
+                .query('DELETE FROM Mascota WHERE Id = @pId');
+            rowsAffected = result.rowsAffected;
+            console.log('rowsAffected');
+            console.log(rowsAffected);
+        } catch (error) {
+            console.log('error');
+            console.log(error);
+        }
+        return rowsAffected;
+    }
 }
+
 

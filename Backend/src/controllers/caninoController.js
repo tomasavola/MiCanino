@@ -1,4 +1,5 @@
 import CaninoService from "../services/canino-services.js";
+import UsuarioXmascotaService from "../services/usuariosXmascotas-services.js";
 import Canino from "../models/canino.js";
 import express, { Router } from "express";
 import cors from "cors"
@@ -62,7 +63,17 @@ router.get('/', async (req, res) => {
     }
   });
 
- 
-  
-
+  router.delete('/:id', async (req, res) => {
+    try {
+      console.log("Estoy en el endpoint");
+      await UsuarioXmascotaService.deleteById(req.params.id);
+      let canino = await caninoService.deleteById(req.params.id);
+      console.log("canino:");
+      console.log(canino);
+      res.send(canino);
+    } catch (error) {
+      console.log(error);
+      res.status(404).send('<p>No se pudo eliminar el canino</p>');
+    }
+  });
 export default router;
