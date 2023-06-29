@@ -12,6 +12,7 @@ import NavBar from './components/NavBar';
 import Salud from './components/Salud';
 import PerfilMascota from './components/PerfilMascota';
 import Otros from './components/Otros';
+import OlvidoContrasena from './components/OlvidoContrasena';
 
 function App() {
   const [arrayMascotas, setArrayMascotas] = useState([{ id: 0, nombre: "", fecha: "", descripcion: "", peso: 0 }]);
@@ -66,11 +67,26 @@ function App() {
                   <InicioSesion onIngresarCuenta={IngresarCuenta} />
                   <br></br>
                   <center><Link to="/FormularioRegistro">¿No tienes cuenta? Registrate aquí</Link></center>
+                  <center><Link to="/OlvidoContrasena">¿Olvidaste tu contrasena?</Link></center>
                 </div>
               </div>
             </div>
           </>
         } />
+
+    <Route path="/OlvidoContrasena" element={
+       <>
+       <Logo />
+       <div className="container">
+         <div className="row">
+           <div className="form-register">
+           <OlvidoContrasena  />
+           </div>
+         </div>
+       </div>
+     </>
+    } />
+
 
         <Route path="/FormularioRegistro" element={
           <>
