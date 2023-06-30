@@ -32,13 +32,16 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
- body{
+
+body {
   background-color: #E7D0AE;
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -52,7 +55,7 @@
   margin: auto;
   border-radius: 4px;
   margin-bottom: 200%;
-  
+
   font-family: 'calibri';
   color: white;
 
@@ -110,10 +113,25 @@
   color: black;
 }
 
-.logo{
+.logo {
   width: 270px;
   height: 270px;
   display: block;
   margin: 0 auto;
   margin-bottom: 10%;
+}
+
+.FotoMapa {
+  width: 300px;
+  height: 400px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 9px;
+  margin-top: 30%;
+}
+
+.Saludo {
+  font-size: 50px;
+  margin-top: 40%;
+  color: black;
 }

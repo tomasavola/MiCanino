@@ -8,7 +8,7 @@ export default function OlvidoContrasena({ onRestaurarContrasena }) {
     const [contrasenaState, setContrasena] = useState('');
     const navigate = useNavigate();
 
-    
+
 
     function restaurarContrasena(i) {
 
@@ -27,18 +27,18 @@ export default function OlvidoContrasena({ onRestaurarContrasena }) {
     return (
 
         <>
-        <form onSubmit={(i) => restaurarContrasena(i)}>
-            { }
+            <form onSubmit={(i) => restaurarContrasena(i)}>
+                { }
 
-            <label className="letraNegra">Correo electrónico</label>
-            <input type="text" name="mail" className="controls" placeholder="Correo" onChange={(i) => setMail(i.target.value)} />
-            <label className="letraNegra">Ingrese una contraseña</label>
-            <input type="text" name="contrasena" className="controls" placeholder="Contraseña" />
-            <label className="letraNegra">Ingrese nuevamente la contraseña</label>
-            <input type="text" name="contrasena" className="controls" placeholder="Contraseña" onChange={(i) => setContrasena(i.target.value)} />
-            <button type="submit" className="botons" onClick={() => navigate('/')}>Confirmar</button>
-        </form>
-    </>
+                <label className="letraNegra">Correo electrónico</label>
+                <input type="text" name="mail" className="controls" placeholder="Correo" onChange={(i) => setMail(i.target.value)} />
+                <label className="letraNegra">Ingrese una contraseña</label>
+                <input type="text" name="contrasena" className="controls" placeholder="Contraseña" />
+                <label className="letraNegra">Ingrese nuevamente la contraseña</label>
+                <input type="text" name="contrasena" className="controls" placeholder="Contraseña" onChange={(i) => setContrasena(i.target.value)} />
+                <button type="submit" className="botons" onClick={() => navigate('/')}>Confirmar</button>
+            </form>
+        </>
 
     );
 };

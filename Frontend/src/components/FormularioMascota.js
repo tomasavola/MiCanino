@@ -45,7 +45,8 @@ export default function FormularioMascota({ onAgregarMascota }) {
         <>
             <form onSubmit={(i) => crearMascota(i)}>
                 { }
-
+                <center><h2 className="letraNegra">Información del canino</h2></center>
+                <br></br>
                 <label className="letraNegra">Nombre</label>
                 <input type="text" name="nombre" className="controls" placeholder="Nombre" onChange={(i) => setNombre(i.target.value)} />
                 <label className="letraNegra">Fecha de nacimiento</label>
@@ -55,7 +56,7 @@ export default function FormularioMascota({ onAgregarMascota }) {
                 <label className="letraNegra">Descripcion</label>
                 <textarea name="descripcion" className="controls" placeholder="Descripcion" onChange={(i) => setDescripcion(i.target.value)}></textarea>
                 <label className="letraNegra">Peso en kilos</label>
-                <textarea name="peso" className="controls" placeholder="Peso (KG)" onChange={(i) => setPeso(i.target.value)}></textarea>
+                <input type="text" name="peso" className="controls" placeholder="Peso" onChange={(i) => setPeso(i.target.value)} />
 
                 <button type="submit" className="botons" onClick={() => navigate('/Home')}>Agregar Mascota</button>
             </form>

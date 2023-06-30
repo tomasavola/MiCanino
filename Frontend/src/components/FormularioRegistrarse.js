@@ -29,12 +29,20 @@ export default function FormularioRegistro({ onAgregarCuenta }) {
 
     }
 
+    function agregarYNavegar() {
+
+
+        navigate('/BrindaServicio')
+    }
+
     const navigate = useNavigate();
     return (
         <>
             <form onSubmit={(i) => crearCuenta(i)}>
                 { }
 
+                <center><h2 className="letraNegra">Información personal</h2></center>
+                <br></br>
                 <label className="letraNegra">Nombre</label>
                 <input type="text" name="nombre" className="controls" placeholder="Nombre" onChange={(i) => setNombre(i.target.value)} />
                 <label className="letraNegra">Apellido</label>
@@ -42,11 +50,11 @@ export default function FormularioRegistro({ onAgregarCuenta }) {
                 <label className="letraNegra">Correo electrónico</label>
                 <input type="text" name="mail" className="controls" placeholder="Correo" onChange={(i) => setMail(i.target.value)} />
                 <label className="letraNegra">Telefono</label>
-                <textarea name="telefono" className="controls" placeholder="Telefono" onChange={(i) => setTelefono(i.target.value)}></textarea>
+                <input type="text" name="telefono" className="controls" placeholder="Telefono" onChange={(i) => setTelefono(i.target.value)} />
                 <label className="letraNegra">Contraseña</label>
-                <textarea name="contrasena" className="controls" placeholder="Contraseña" onChange={(i) => setContrasena(i.target.value)}></textarea>
+                <input type="text" name="Contrasena" className="controls" placeholder="Contraseña" onChange={(i) => setContrasena(i.target.value)} />
 
-                <button type="submit" className="botons" onClick={() => navigate('/FormularioMascota')}>Crear cuenta</button>
+                <button type="submit" className="botons" onClick={agregarYNavegar}>Crear cuenta</button>
 
             </form>
         </>

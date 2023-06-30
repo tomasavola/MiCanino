@@ -13,6 +13,11 @@ import Salud from './components/Salud';
 import PerfilMascota from './components/PerfilMascota';
 import Otros from './components/Otros';
 import OlvidoContrasena from './components/OlvidoContrasena';
+import BrindaSerivcio from './components/BrindaServicio';
+import FormularioServicio1 from './components/FormularioServicio1';
+import FormularioServicio2 from './components/FormularioServicio2';
+import Bienvenida from './components/Bienvenida';
+import Configuracion from './components/Configuracion';
 
 function App() {
   const [arrayMascotas, setArrayMascotas] = useState([{ id: 0, nombre: "", fecha: "", descripcion: "", peso: 0 }]);
@@ -42,6 +47,18 @@ function App() {
         console.log(error);
       });
   }
+
+  function AgregarServicio(servicio) {
+    console.log(servicio);
+    axios.post('http://' + HOST + ':5000/api/caninos/servicio', servicio)
+      .then(response => {
+        console.log(response.status);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
 
   function IngresarCuenta(cuenta) {
     console.log(cuenta);
@@ -74,19 +91,44 @@ function App() {
           </>
         } />
 
-    <Route path="/OlvidoContrasena" element={
-       <>
-       <Logo />
-       <div className="container">
-         <div className="row">
-           <div className="form-register">
-           <OlvidoContrasena  />
-           </div>
-         </div>
-       </div>
-     </>
-    } />
+        <Route path="/OlvidoContrasena" element={
+          <>
+            <Logo />
+            <div className="container">
+              <div className="row">
+                <div className="form-register">
+                  <OlvidoContrasena />
+                </div>
+              </div>
+            </div>
+          </>
+        } />
 
+        <Route path="/BrindaServicio" element={
+          <>
+            <Logo />
+            <div className="container">
+              <div className="row">
+                <div className="form-register">
+                  <BrindaSerivcio />
+                </div>
+              </div>
+            </div>
+          </>
+        } />
+
+        <Route path="/Bienvenida" element={
+          <>
+            <Logo />
+            <div className="container">
+              <div className="row">
+                <div className="form-register">
+                  <Bienvenida />
+                </div>
+              </div>
+            </div>
+          </>
+        } />
 
         <Route path="/FormularioRegistro" element={
           <>
@@ -95,6 +137,32 @@ function App() {
               <div className="row">
                 <div className="form-register">
                   <FormularioRegistro onAgregarCuenta={AgregarCuenta} />
+                </div>
+              </div>
+            </div>
+          </>
+        } />
+
+        <Route path="/FormularioServicio1" element={
+          <>
+            <Logo />
+            <div className="container">
+              <div className="row">
+                <div className="form-register">
+                  <FormularioServicio1 onAgregarServicio={AgregarServicio} />
+                </div>
+              </div>
+            </div>
+          </>
+        } />
+
+        <Route path="/FormularioServicio2" element={
+          <>
+            <Logo />
+            <div className="container">
+              <div className="row">
+                <div className="form-register">
+                  <FormularioServicio2 onAgregarServicio2={AgregarServicio} />
                 </div>
               </div>
             </div>
@@ -156,6 +224,18 @@ function App() {
               <div className="row">
                 <div className="form-register">
                   <Otros />
+                </div>
+              </div>
+            </div>
+          </>
+        } />
+
+        <Route path="/Configuracion" element={
+          <>
+            <div className="container">
+              <div className="row">
+                <div className="form-register">
+                  <Configuracion />
                 </div>
               </div>
             </div>

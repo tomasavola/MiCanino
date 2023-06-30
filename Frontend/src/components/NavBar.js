@@ -1,6 +1,6 @@
 import React from 'react'
 import './NavBar.css';
-import { FaHome, FaAmbulance, FaDog, FaGripLines } from "react-icons/fa";
+import { FaHome, FaAmbulance, FaDog, FaBars } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
 export default function NavBar() {
@@ -15,10 +15,10 @@ export default function NavBar() {
             <Link to="/Salud"><FaAmbulance size={50} /></Link>
           </li>
           <li>
-            <Link to="/PerfilMascota"><FaDog size={50}/></Link>
+            <Link to="/PerfilMascota"><FaDog size={50} /></Link>
           </li>
           <li>
-            <Link to="/Otros"><FaGripLines size={50}/></Link>
+            <Link to="/Otros"><FaBars size={50} /></Link>
           </li>
         </ul>
       </div>

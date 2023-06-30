@@ -5,5 +5,5 @@ import NavBar from "./NavBar";
 export default function Otros() {
     return (
         <NavBar />
-        )
+    )
 }
