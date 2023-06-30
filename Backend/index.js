@@ -3,6 +3,8 @@ import express from "express";
 import cors    from "cors";
 import CaninoRouter from "./src/controllers/caninoController.js";
 import UsuarioRouter from "./src/controllers/usuarioController.js";
+import LoginRouter from "./src/controllers/loginController.js";
+import ServicioRouter from "./src/controllers/servicioController.js";
 
 //
 // Variables/Constantes del Modulo
@@ -18,7 +20,9 @@ app.use(cors());                    // agrego el middleware de CORS
 app.use(express.json());            // agrego el middleware para parsear y comprender JSON
 app.use(express.static('public'));  // agrego el middleware de retornar archivos estaticos
 app.use('/api/caninos/', CaninoRouter); 
-app.use('/api/caninos/usuario', UsuarioRouter); 
+app.use('/api/caninos/usuario/', UsuarioRouter);
+app.use('/api/caninos/usuario/login/', LoginRouter); 
+app.use('/api/caninos/servicio/', ServicioRouter);  
 
 //
 // Levanto el servidor WEB (pongo a escuchar)
