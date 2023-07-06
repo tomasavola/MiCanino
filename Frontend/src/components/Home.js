@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import FotoMapa from "./FotoMapa";
 import Saludo from "./Saludo";
-import LogoConfiguracion from "./ConfiguracionLogo";
+import Logos from "./Logos";
 
 export default function Home() {
     return (
         <div>
-            <LogoConfiguracion />
+            <Logos />
             <Saludo /> 
             <FotoMapa />
             <NavBar />

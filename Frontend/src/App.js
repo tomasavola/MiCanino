@@ -18,6 +18,8 @@ import FormularioServicio1 from './components/FormularioServicio1';
 import FormularioServicio2 from './components/FormularioServicio2';
 import Bienvenida from './components/Bienvenida';
 import Configuracion from './components/Configuracion';
+import Notificaciones from './components/Notificaciones';
+import Logos from './components/Logos';
 
 function App() {
   const [arrayMascotas, setArrayMascotas] = useState([{ id: 0, nombre: "", fecha: "", descripcion: "", peso: 0 }]);
@@ -84,6 +86,7 @@ function App() {
                   <InicioSesion onIngresarCuenta={IngresarCuenta} />
                   <br></br>
                   <center><Link to="/FormularioRegistro">¿No tienes cuenta? Registrate aquí</Link></center>
+                  <br></br>
                   <center><Link to="/OlvidoContrasena">¿Olvidaste tu contrasena?</Link></center>
                 </div>
               </div>
@@ -236,6 +239,18 @@ function App() {
               <div className="row">
                 <div className="form-register">
                   <Configuracion />
+                </div>
+              </div>
+            </div>
+          </>
+        } />
+
+        <Route path="/Notificaciones" element={
+          <>
+            <div className="container">
+              <div className="row">
+                <div className="form-register">
+                  <Notificaciones />
                 </div>
               </div>
             </div>

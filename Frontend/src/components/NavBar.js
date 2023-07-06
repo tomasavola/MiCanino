@@ -9,7 +9,7 @@ export default function NavBar() {
       <div className="navigation-menu">
         <ul>
           <li>
-            <Link to="/Home"><FaHome size={50} /></Link>
+            <Link to="/Home" ><FaHome size={50} /></Link>
           </li>
           <li>
             <Link to="/Salud"><FaAmbulance size={50} /></Link>

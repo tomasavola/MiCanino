@@ -1,7 +1,7 @@
 import NavBar from "./NavBar";
 import Logos from "./Logos";
 
-export default function Configuracion() {
+export default function Notificaciones() {
     return (
         <div>
             <Logos />
