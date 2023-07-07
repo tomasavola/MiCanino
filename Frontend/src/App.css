@@ -122,14 +122,22 @@ body {
 }
 
 .Logos{
+  color: #414040;
   text-align: right;
   margin-top: 5%;
+  transition: color .3s;
+}
+
+.Logos a:hover {
+  size: 100px;
 }
 
 .LogoConfiguracion{
+  color: #414040;
   text-align: right;
   margin-top: 10%;
   margin-right: 8%;
+  transition: color .3s;
 }
 
 .FotoMapa {
@@ -143,6 +151,26 @@ body {
 
 .Saludo {
   font-size: 50px;
-  margin-top: 40%;
+  margin-top: 30%;
   color: black;
+}
+.FotoYCambioCanino {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  margin-top: 8px; 
+  color: #414040;
+}
+
+.FotoYCambioCanino a {
+  margin-left: 10%;
+  margin-top: 10%; 
+}
+
+.FlechaInfo{
+  margin-top: 14%;
+  margin-left: 5%;
 }

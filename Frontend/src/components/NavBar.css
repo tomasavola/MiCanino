@@ -30,12 +30,12 @@
 }
 
 .navigation a {
-  color: #333;
+  color: #414040;
   transition: color .3s;
 }
 
 .navigation a:hover {
-  color: rgb(199, 199, 199);
+  size: 100px;
 }
 
 /* Asegura que el contenido principal no se solape con el navbar */

@@ -8,10 +8,11 @@ export default function FormularioServicio({ onAgregarServicio }) {
     const [servicioState, setServicio] = useState('');
     const [nombreState, setNombre] = useState('');
     const [direccionState, setDireccion] = useState('');
+    const navigate = useNavigate();
 
-    function crearServicio(i) {
+    function crearServicio(event) {
 
-        i.preventDefault();
+        event.preventDefault();
         setId(idState + 1)
 
         let servicio = {
@@ -22,13 +23,16 @@ export default function FormularioServicio({ onAgregarServicio }) {
         }
 
         onAgregarServicio(servicio)
-
+        agregarYNavegar();
     }
-    const navigate = useNavigate();
+
+    function agregarYNavegar() {
+        navigate('/FormularioServicio2');
+    }
 
     return (
         <>
-            <form onSubmit={(i) => crearServicio(i)}>
+            <form onSubmit={crearServicio}>
                 { }
                 <center><h2 className="letraNegra">Información del servicio</h2></center>
                 <br></br>
@@ -46,7 +50,7 @@ export default function FormularioServicio({ onAgregarServicio }) {
                 <label className="letraNegra">Direccion</label>
                 <input type="text" name="direccion" className="controls" placeholder="Direccion" onChange={(i) => setDireccion(i.target.value)} />
 
-                <button type="submit" className="botons" onClick={() => navigate('/FormularioServicio2')}>Continuar</button>
+                <button type="submit" className="botons">Continuar</button>
             </form>
         </>
     );

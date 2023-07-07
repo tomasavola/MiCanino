@@ -36,7 +36,7 @@ export default function OlvidoContrasena({ onRestaurarContrasena }) {
                 <input type="text" name="contrasena" className="controls" placeholder="Contraseña" />
                 <label className="letraNegra">Ingrese nuevamente la contraseña</label>
                 <input type="text" name="contrasena" className="controls" placeholder="Contraseña" onChange={(i) => setContrasena(i.target.value)} />
-                <button type="submit" className="botons" onClick={() => navigate('/')}>Confirmar</button>
+                <button type="submit" className="botons" onSubmit={() => navigate('/')}>Confirmar</button>
             </form>
         </>
 

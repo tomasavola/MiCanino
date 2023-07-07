@@ -8,10 +8,11 @@ export default function FormularioServicio2({ onAgregarServicio2 }) {
     const [telefonoState, setTelefono] = useState('');
     const [correoState, setCorreo] = useState('');
     const [descripcionState, setDescripcion] = useState('');
+    const navigate = useNavigate();
 
-    function crearServicio2(i) {
+    function crearServicio2(event) {
 
-        i.preventDefault();
+        event.preventDefault();
 
         let servicio2 = {
             horario: horarioState,
@@ -21,13 +22,16 @@ export default function FormularioServicio2({ onAgregarServicio2 }) {
         }
 
         onAgregarServicio2(servicio2)
-
+        agregarYNavegar();
     }
-    const navigate = useNavigate();
+
+    function agregarYNavegar() {
+        navigate('/Bienvenida');
+    }
 
     return (
         <>
-            <form onSubmit={(i) => crearServicio2(i)}>
+            <form onSubmit={crearServicio2}>
                 { }
                 <center><h2 className="letraNegra">Información del servicio</h2></center>
                 <br></br>
@@ -40,7 +44,7 @@ export default function FormularioServicio2({ onAgregarServicio2 }) {
                 <label className="letraNegra">Descripción</label>
                 <textarea name="descripcion" className="controls" placeholder="Descripcion" onChange={(i) => setDescripcion(i.target.value)}></textarea>
 
-                <button type="submit" className="botons" onClick={() => navigate('/Bienvenida')}>Confirmar</button>
+                <button type="submit" className="botons">Confirmar</button>
             </form>
         </>
     );

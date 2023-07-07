@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
 export default function FormularioRegistro({ onAgregarCuenta }) {
-
     const [idState, setId] = useState(0);
     const [nombreState, setNombre] = useState('');
     const [apellidoState, setApellido] = useState('');
@@ -11,10 +9,11 @@ export default function FormularioRegistro({ onAgregarCuenta }) {
     const [telefonoState, setTelefono] = useState('');
     const [contrasenaState, setContrasena] = useState('');
 
-    function crearCuenta(i) {
+    const navigate = useNavigate();
 
-        i.preventDefault();
-        setId(idState + 1)
+    function crearCuenta(event) {
+        event.preventDefault();
+        setId(idState + 1);
 
         let cuenta = {
             id: idState,
@@ -23,39 +22,33 @@ export default function FormularioRegistro({ onAgregarCuenta }) {
             mail: mailState,
             telefono: telefonoState,
             contrasena: contrasenaState
-        }
+        };
 
-        onAgregarCuenta(cuenta)
-
+        onAgregarCuenta(cuenta);
+        agregarYNavegar();
     }
 
     function agregarYNavegar() {
-
-
-        navigate('/BrindaServicio')
+        navigate('/BrindaServicio');
     }
 
-    const navigate = useNavigate();
     return (
         <>
-            <form onSubmit={(i) => crearCuenta(i)}>
-                { }
-
+            <form onSubmit={crearCuenta}>
                 <center><h2 className="letraNegra">Información personal</h2></center>
                 <br></br>
                 <label className="letraNegra">Nombre</label>
-                <input type="text" name="nombre" className="controls" placeholder="Nombre" onChange={(i) => setNombre(i.target.value)} />
+                <input type="text" name="nombre" className="controls" placeholder="Nombre" onChange={(e) => setNombre(e.target.value)} />
                 <label className="letraNegra">Apellido</label>
-                <input type="text" name="apellido" className="controls" placeholder="Apellido" onChange={(i) => setApellido(i.target.value)} />
+                <input type="text" name="apellido" className="controls" placeholder="Apellido" onChange={(e) => setApellido(e.target.value)} />
                 <label className="letraNegra">Correo electrónico</label>
-                <input type="text" name="mail" className="controls" placeholder="Correo" onChange={(i) => setMail(i.target.value)} />
+                <input type="text" name="mail" className="controls" placeholder="Correo" onChange={(e) => setMail(e.target.value)} />
                 <label className="letraNegra">Telefono</label>
-                <input type="text" name="telefono" className="controls" placeholder="Telefono" onChange={(i) => setTelefono(i.target.value)} />
+                <input type="text" name="telefono" className="controls" placeholder="Telefono" onChange={(e) => setTelefono(e.target.value)} />
                 <label className="letraNegra">Contraseña</label>
-                <input type="text" name="Contrasena" className="controls" placeholder="Contraseña" onChange={(i) => setContrasena(i.target.value)} />
+                <input type="text" name="Contrasena" className="controls" placeholder="Contraseña" onChange={(e) => setContrasena(e.target.value)} />
 
-                <button type="submit" className="botons" onClick={agregarYNavegar}>Crear cuenta</button>
-
+                <button type="submit" className="botons">Crear cuenta</button>
             </form>
         </>
     );

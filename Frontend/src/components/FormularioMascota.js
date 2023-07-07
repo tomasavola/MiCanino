@@ -13,6 +13,8 @@ export default function FormularioMascota({ onAgregarMascota }) {
     /*const [fotoState, setFoto] = useState('');
     const [PartidaState, setPartida] = useState('');
     const [carnetState, setCarnet] = useState('');*/
+    const navigate = useNavigate();
+
 
     function crearMascota(i) {
 
@@ -32,19 +34,24 @@ export default function FormularioMascota({ onAgregarMascota }) {
         }
 
         onAgregarMascota(mascota)
-
+        agregarYNavegar();
     }
-    const navigate = useNavigate();
+
+    function agregarYNavegar() {
+        navigate('/Home');
+    }
+   
+
     /*<label>Foto</label> ESTO VA ABAJO EN EL FORM
     <input type="file" name="foto" className="controls" placeholder="Inserte una foto del canino" onChange={(i) => setFoto(i.target.value)}/>
     <label>Partida de nacimiento</label>  
     <input type="file" name="partida" className="controls" placeholder="Inserte una foto de la partida de nacimiento del canino" onChange={(i) => setPartida(i.target.value)}></input>
     <label>Carnet de vacunacion</label>  
     <input type="file"name="carnet" className="controls" placeholder="Inserte una foto del carnet de vacunacion del canino" onChange={(i) => setCarnet(i.target.value)}></input> */
+
     return (
         <>
-            <form onSubmit={(i) => crearMascota(i)}>
-                { }
+            <form onSubmit={crearMascota}>                { }
                 <center><h2 className="letraNegra">Información del canino</h2></center>
                 <br></br>
                 <label className="letraNegra">Nombre</label>
@@ -58,7 +65,7 @@ export default function FormularioMascota({ onAgregarMascota }) {
                 <label className="letraNegra">Peso en kilos</label>
                 <input type="text" name="peso" className="controls" placeholder="Peso" onChange={(i) => setPeso(i.target.value)} />
 
-                <button type="submit" className="botons" onClick={() => navigate('/Home')}>Agregar Mascota</button>
+                <button type="submit" className="botons">Agregar Mascota</button>
             </form>
         </>
     );

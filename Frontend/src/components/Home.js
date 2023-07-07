@@ -5,10 +5,12 @@ import NavBar from "./NavBar";
 import FotoMapa from "./FotoMapa";
 import Saludo from "./Saludo";
 import Logos from "./Logos";
+import InfoCanino from "./InfoCanino";
 
 export default function Home() {
     return (
         <div>
+            <InfoCanino />
             <Logos />
             <Saludo /> 
             <FotoMapa />

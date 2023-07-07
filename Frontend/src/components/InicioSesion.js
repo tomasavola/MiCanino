@@ -31,7 +31,7 @@ export default function InicioSesion({ onIngresarCuenta }) {
                 <label className="letraNegra">Contraseña</label>
                 <input type="text" name="contrasena" className="controls" placeholder="Contraseña" onChange={(i) => setContrasena(i.target.value)} />
 
-                <button type="submit" className="botons" onClick={() => navigate('/Home')}>Iniciar sesión</button>
+                <button type="submit" className="botons" onSubmit={() => navigate('/Home')}>Iniciar sesión</button>
             </form>
         </>
     );
