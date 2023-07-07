@@ -16,9 +16,9 @@ export default function FormularioMascota({ onAgregarMascota }) {
     const navigate = useNavigate();
 
 
-    function crearMascota(i) {
+    function crearMascota(event) {
 
-        i.preventDefault();
+        event.preventDefault();
         setId(idState + 1)
 
         let mascota = {
@@ -51,7 +51,7 @@ export default function FormularioMascota({ onAgregarMascota }) {
 
     return (
         <>
-            <form onSubmit={crearMascota}>                { }
+            <form onSubmit={crearMascota}>
                 <center><h2 className="letraNegra">Información del canino</h2></center>
                 <br></br>
                 <label className="letraNegra">Nombre</label>

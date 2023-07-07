@@ -20,6 +20,8 @@ import Bienvenida from './components/Bienvenida';
 import Configuracion from './components/Configuracion';
 import Notificaciones from './components/Notificaciones';
 import Logos from './components/Logos';
+import FormularioEvento from './components/FormularioEvento';
+import AgregarEvento from './components/FormularioEvento';
 
 function App() {
   const [arrayMascotas, setArrayMascotas] = useState([{ id: 0, nombre: "", fecha: "", descripcion: "", peso: 0 }]);
@@ -53,6 +55,17 @@ function App() {
   function AgregarServicio(servicio) {
     console.log(servicio);
     axios.post('http://' + HOST + ':5000/api/caninos/servicio', servicio)
+      .then(response => {
+        console.log(response.status);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  function AgregarEvento(evento) {
+    console.log(evento);
+    axios.post('http://' + HOST + ':5000/api/caninos/evento', evento)
       .then(response => {
         console.log(response.status);
       })
@@ -251,6 +264,30 @@ function App() {
               <div className="row">
                 <div className="form-register">
                   <Notificaciones />
+                </div>
+              </div>
+            </div>
+          </>
+        } />
+
+        <Route path="/FormularioEvento" element={
+          <>
+            <div className="container">
+              <div className="row">
+                <div className="form-register">
+                  <FormularioEvento onAgregarEvento={AgregarEvento}/>
+                </div>
+              </div>
+            </div>
+          </>
+        } />
+
+        <Route path="/AgregarEvento" element={
+          <>
+            <div className="container">
+              <div className="row">
+                <div className="form-register">
+                  <AgregarEvento />
                 </div>
               </div>
             </div>

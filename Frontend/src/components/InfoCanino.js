@@ -5,9 +5,9 @@ import React from 'react'
 export default function InfoCanino() {
     return (
         <div className="FotoYCambioCanino">
-        <FaDog size={70}/>
-        <Link to="/CambiarCanino">Bartolo</Link>
-        <FaAngleDown className="FlechaInfo" size={30}/>
+            <FaDog size={70} />
+            <Link to="/CambiarCanino">Bartolo</Link>
+            <FaAngleDown className="FlechaInfo" size={30} />
         </div>
     );
 }

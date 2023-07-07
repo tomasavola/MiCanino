@@ -12,7 +12,7 @@ export default function Home() {
         <div>
             <InfoCanino />
             <Logos />
-            <Saludo /> 
+            <Saludo />
             <FotoMapa />
             <NavBar />
         </div>

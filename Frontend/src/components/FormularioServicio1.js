@@ -37,7 +37,7 @@ export default function FormularioServicio({ onAgregarServicio }) {
                 <center><h2 className="letraNegra">Información del servicio</h2></center>
                 <br></br>
                 <label className="letraNegra">Nombre</label>
-                <input type="text" name="nombre" className="controls" placeholder="Nombre" onChange={(i) => setNombre(i.target.value)} />
+                <input type="text" name="nombre" className="controls" placeholder="Nombre" onChange={(e) => setNombre(e.target.value)} />
                 <label className="letraNegra">Servicio</label>
                 <select name="servicio" className="controls" onChange={(i) => setServicio(i.target.value)}>
                     <option value="Paseador">Paseador</option>
