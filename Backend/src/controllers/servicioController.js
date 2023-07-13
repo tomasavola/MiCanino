@@ -1,4 +1,4 @@
-import SerivcioService from "../services/servicio-services.js";
+import ServicioService from "../services/servicio-services.js";
 import Servicio from "../models/servicio.js";
 import express, { Router } from "express";
 import cors from "cors"
@@ -18,6 +18,7 @@ router.post('/', async (req, res) =>{
 })
 
 router.get('/', async (req, res) => {
+    console.log("CONTROLLER")
     try{
         let servicio = await servicioService.getAll();
         res.status(200).send(servicio);

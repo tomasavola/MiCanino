@@ -3,7 +3,7 @@ import sql from 'mssql';
 import CopiaError from "../modules/log-helper.js";
 
 
-export default class SerivcioService {
+export default class ServicioService {
 
     getAll = async () => {
         console.log("getAll")

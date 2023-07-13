@@ -3,6 +3,8 @@ import cors from "cors";
 import CaninoRouter from "./src/controllers/caninoController.js";
 import UsuarioRouter from "./src/controllers/usuarioController.js";
 import UsuarioLoginRouter from "./src/controllers/usuarioLoginController.js";
+import ServicioRouter from "./src/controllers/servicioController.js";
+import EventoRouter from "./src/controllers/eventoController.js";
 
 
 const app = express();
@@ -14,6 +16,9 @@ app.use(express.static('public'));
 app.use('/api/caninos/', CaninoRouter);
 app.use('/api/caninos/usuario/', UsuarioRouter);
 app.use('/api/caninos/login/', UsuarioLoginRouter);
+app.use('/api/caninos/servicio/', ServicioRouter);
+app.use('/api/caninos/evento/', EventoRouter);
+
 
 
 app.listen(port, () => {
