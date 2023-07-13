@@ -11,6 +11,7 @@
     "dom": "^0.0.3",
     "icons": "^1.0.0",
     "react": "^18.2.0",
+    "react-calendar": "^4.3.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
     "react-navigation": "^4.4.4",

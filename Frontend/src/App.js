@@ -21,12 +21,12 @@ import Configuracion from './components/Configuracion';
 import Notificaciones from './components/Notificaciones';
 import Logos from './components/Logos';
 import FormularioEvento from './components/FormularioEvento';
-import AgregarEvento from './components/FormularioEvento';
 
 function App() {
   const [arrayMascotas, setArrayMascotas] = useState([{ id: 0, nombre: "", fecha: "", descripcion: "", peso: 0 }]);
   const [arrayCuentas, setArrayCuentas] = useState([{ id: 0, nombre: "", apellido: "", mail: "", telefono: "", contrasena: "" }]);
-  let HOST = 'A-PHZ2-CIDI-005'
+  const [eventos, setEventos] = useState([]);
+  let HOST = 'A-PHZ2-CIDI-005';
 
   function AgregarMascota(mascota) {
     console.log("hola");
@@ -68,6 +68,7 @@ function App() {
     axios.post('http://' + HOST + ':5000/api/caninos/evento', evento)
       .then(response => {
         console.log(response.status);
+        setEventos([...eventos, evento]);
       })
       .catch(error => {
         console.log(error);
@@ -275,7 +276,7 @@ function App() {
             <div className="container">
               <div className="row">
                 <div className="form-register">
-                  <FormularioEvento onAgregarEvento={AgregarEvento}/>
+                  <FormularioEvento onAgregarEvento={AgregarEvento} />
                 </div>
               </div>
             </div>
@@ -287,7 +288,7 @@ function App() {
             <div className="container">
               <div className="row">
                 <div className="form-register">
-                  <AgregarEvento />
+                  <FormularioEvento onAgregarEvento={AgregarEvento} />
                 </div>
               </div>
             </div>
