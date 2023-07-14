@@ -21,18 +21,20 @@ import Configuracion from './components/Configuracion';
 import Notificaciones from './components/Notificaciones';
 import Logos from './components/Logos';
 import FormularioEvento from './components/FormularioEvento';
+import HistorialMedicamentos from './components/HistorialMedicamentos';
+import Host from './components/Host'
 
 function App() {
   const [arrayMascotas, setArrayMascotas] = useState([{ id: 0, nombre: "", fecha: "", descripcion: "", peso: 0 }]);
   const [arrayCuentas, setArrayCuentas] = useState([{ id: 0, nombre: "", apellido: "", mail: "", telefono: "", contrasena: "" }]);
   const [eventos, setEventos] = useState([]);
-  let HOST = 'A-PHZ2-CIDI-005';
+  const [medicamentos, setMedicamentos] = useState([]);
 
   function AgregarMascota(mascota) {
     console.log("hola");
     console.log(mascota);
 
-    axios.post('http://' + HOST + ':5000/api/caninos/', mascota)
+    axios.post('http://' + Host + ':5000/api/caninos/', mascota)
       .then(response => {
         console.log(response.status);
       })
@@ -43,7 +45,7 @@ function App() {
 
   function AgregarCuenta(cuenta) {
     console.log(cuenta);
-    axios.post('http://' + HOST + ':5000/api/caninos/usuario', cuenta)
+    axios.post('http://' + Host + ':5000/api/caninos/usuario', cuenta)
       .then(response => {
         console.log(response.status);
       })
@@ -54,7 +56,7 @@ function App() {
 
   function AgregarServicio(servicio) {
     console.log(servicio);
-    axios.post('http://' + HOST + ':5000/api/caninos/servicio', servicio)
+    axios.post('http://' + Host + ':5000/api/caninos/servicio', servicio)
       .then(response => {
         console.log(response.status);
       })
@@ -65,7 +67,7 @@ function App() {
 
   function AgregarEvento(evento) {
     console.log(evento);
-    axios.post('http://' + HOST + ':5000/api/caninos/evento', evento)
+    axios.post('http://' + Host + ':5000/api/caninos/evento', evento)
       .then(response => {
         console.log(response.status);
         setEventos([...eventos, evento]);
@@ -78,9 +80,19 @@ function App() {
 
   function IngresarCuenta(cuenta) {
     console.log(cuenta);
-    axios.post('http://' + HOST + ':5000/api/caninos/', cuenta)
+    axios.post('http://' + Host + ':5000/api/caninos/', cuenta)
       .then(response => {
         console.log(response.status);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  function obtenerHistorialMedicamentos() {
+    axios.get('http://' + Host + ':5000/api/caninos/HistorialMedicamentos')
+      .then(response => {
+        setMedicamentos(response.data);
       })
       .catch(error => {
         console.log(error);
@@ -289,6 +301,18 @@ function App() {
               <div className="row">
                 <div className="form-register">
                   <FormularioEvento onAgregarEvento={AgregarEvento} />
+                </div>
+              </div>
+            </div>
+          </>
+        } />
+
+        <Route path="/HistorialMedicamentos" element={
+          <>
+            <div className="container">
+              <div className="row">
+                <div className="form-register">
+                  <HistorialMedicamentos />
                 </div>
               </div>
             </div>

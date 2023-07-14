@@ -6,7 +6,7 @@ export default function InfoCanino() {
     return (
         <div className="FotoYCambioCanino">
             <FaDog size={70} />
-            <Link to="/CambiarCanino">Bartolo</Link>
+            <Link to="/Home">Bartolo</Link>
             <FaAngleDown className="FlechaInfo" size={30} />
         </div>
     );
