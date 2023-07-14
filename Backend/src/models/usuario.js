@@ -1,5 +1,5 @@
-export default class Usuario{
-    constructor(id, nombre, apellido, mail,telefono,password){
+export default class Usuario {
+    constructor(id, nombre, apellido, mail, telefono, password) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -7,5 +7,5 @@ export default class Usuario{
         this.telefono = telefono;
         this.password = password;
     }
-    
+
 }

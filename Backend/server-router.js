@@ -1,4 +1,4 @@
-import CaninoService from "./src/services/canino-services.js";
+/*import CaninoService from "./src/services/canino-services.js";
 import caninoService from "./src/models/canino.js";
 import express from "express";
 import cors from "cors"
@@ -23,3 +23,4 @@ app.use("/Caninos", router)
 app.listen(port, () => {
     console.log("Escuchando en el puerto " + port);
 });
+*/

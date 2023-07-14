@@ -5,6 +5,9 @@ import UsuarioRouter from "./src/controllers/usuarioController.js";
 import UsuarioLoginRouter from "./src/controllers/usuarioLoginController.js";
 import ServicioRouter from "./src/controllers/servicioController.js";
 import EventoRouter from "./src/controllers/eventoController.js";
+import HistorialRouter from "./src/controllers/historialController.js";
+import CaninoPerdidoRouter from "./src/controllers/caninoPerdidoController.js";
+
 
 
 const app = express();
@@ -18,6 +21,9 @@ app.use('/api/caninos/usuario/', UsuarioRouter);
 app.use('/api/caninos/login/', UsuarioLoginRouter);
 app.use('/api/caninos/servicio/', ServicioRouter);
 app.use('/api/caninos/evento/', EventoRouter);
+app.use('/api/caninos/historial/', HistorialRouter);
+app.use('/api/caninos/caninoPerdido/', CaninoPerdidoRouter);
+
 
 
 

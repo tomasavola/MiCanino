@@ -3,7 +3,7 @@ import sql from 'mssql';
 import CopiaError from "../modules/log-helper.js";
 //import Pizza from "../models/canino.js";
 
-export default class CaninoService {
+export default class CaninoPerdidoService {
 
     getAll = async () => {
         console.log("getAll")
@@ -11,7 +11,7 @@ export default class CaninoService {
         try {
             let pool = await sql.connect(config);
             let result = await pool.request()
-                .query('SELECT * FROM Mascota');
+                .query('SELECT * FROM MascotaPerdida');
             returnList = result.recordset;
         } catch (error) {
             console.log(error);
@@ -27,7 +27,7 @@ export default class CaninoService {
             let pool = await sql.connect(config);
             let result = await pool.request()
                 .input('pId', sql.Int, id)
-                .query('SELECT * FROM Mascota WHERE id = @pId');
+                .query('SELECT * FROM MascotaPerdida WHERE id = @pId');
             returnEntity = result.recordsets[0][0]
         } catch (error) {
             console.log(error);
@@ -35,7 +35,7 @@ export default class CaninoService {
         return returnEntity;
     }
 
-    getByIdUsuario = async (IdUsuario) => {
+    /*getByIdUsuario = async (IdUsuario) => {
         let returnList = null;
         console.log('getByIdUsuario')
         try {
@@ -52,21 +52,17 @@ export default class CaninoService {
         return returnList;
 
     }
+    */
 
-    insert = async (canino) => {
+    insert = async (caninoPerdido) => {
         let rowsAffected = 0;
         console.log('insert')
         try {
             let pool = await sql.connect(config);
             let result = await pool.request()
-                .input('pNombre', sql.VarChar, canino?.nombre ?? '')
-                .input('pFechaNacimiento', sql.DateTime, canino?.fecha ?? '')
-                .input('pDescripcion', sql.VarChar, canino?.descripcion ?? '')
-                .input('pPeso', sql.Float, canino?.peso ?? '')
-                .input('pFoto', sql.VarChar, canino?.foto ?? '')
-                .input('pPartidaNacimiento', sql.VarChar, canino?.partidaNacimiento ?? '')
-                .input('pCarnetVacunacion', sql.VarChar, canino?.carnetVacunacion ?? '')
-                .query('insert into Mascota( Nombre, FechaNacimiento, Descripcion, Peso, Foto, PartidaNacimiento, CarnetVacunacion) VALUES ( @pNombre, @pFechaNacimiento, @pDescripcion, @pPeso, @pFoto, @pPartidaNacimiento, @pCarnetVacunacion )');
+                .input('pUbicacion', sql.VarChar, caninoPerdido?.ubicacion ?? '')
+                .input('pFechaPerdido', sql.DateTime, caninoPerdido?.fechaPerdido ?? '')
+                .query('insert into MascotaPerdida( Ubicacion, FechaPerdido) VALUES ( @pUbicacion, @pFechaPerdido)');
             rowsAffected = result.rowsAffected;
         } catch (error) {
             console.log(error);
@@ -74,21 +70,16 @@ export default class CaninoService {
         return rowsAffected;
     }
 
-    update = async (canino) => {
+    update = async (caninoPerdido) => {
         console.log('update')
         let rowsAffected = 0;
         try {
             let pool = await sql.connect(config);
             let result = await pool.request()
-                .input('pNombre', sql.VarChar, canino?.nombre ?? '')
-                .input('pFechaNacimiento', sql.DateTime, canino?.fecha ?? '')
-                .input('pDescripcion', sql.VarChar, canino?.descripcion ?? '')
-                .input('pPeso', sql.Float, canino?.peso ?? '')
-                .input('pFoto', sql.VarChar, canino?.foto ?? '')
-                .input('pPartidaNacimiento', sql.VarChar, canino?.partidaNacimiento ?? '')
-                .input('pCarnetVacunacion', sql.VarChar, canino?.carnetVacunacion ?? '')
-                .input('pId', sql.Float, canino?.id ?? '')
-                .query('update Mascota SET Nombre = @pNombre, FechaNacimiento = @pFechaNacimiento, Descripcion = @pDescripcion, Peso = @pPeso, Foto =  @pFoto, PartidaNacimiento =  @pPartidaNacimiento, CarnetVacunacion = @pCarnetVacunacion   WHERE Id = @pId');
+             .input('pUbicacion', sql.VarChar, caninoPerdido?.ubicacion ?? '')
+                .input('pFechaPerdido', sql.DateTime, caninoPerdido?.fechaPerdido ?? '')
+                .input('pId', sql.Int, caninoPerdido?.id ?? '')
+                .query('update Mascota SET Ubicacion = @pUbicacion, FechaPerdido = @pFechaPerdido WHERE Id = @pId');
             rowsAffected = result.rowsAffected;
         } catch (error) {
             console.log(error);
@@ -104,7 +95,7 @@ export default class CaninoService {
             let pool = await sql.connect(config);
             let result = await pool.request()
                 .input('pId', sql.Int, id)
-                .query('DELETE FROM Mascota WHERE Id = @pId');
+                .query('DELETE FROM MascotaPerdida WHERE Id = @pId');
             rowsAffected = result.rowsAffected;
             console.log('rowsAffected');
             console.log(rowsAffected);

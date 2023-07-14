@@ -3,7 +3,7 @@ import sql from 'mssql';
 import CopiaError from "../modules/log-helper.js";
 //import Pizza from "../models/canino.js";
 
-export default class EventoService {
+export default class HistorialService {
 
     getAll = async () => {
         console.log("getAll")
@@ -11,7 +11,7 @@ export default class EventoService {
         try {
             let pool = await sql.connect(config);
             let result = await pool.request()
-                .query('SELECT * FROM Eventos');
+                .query('SELECT * FROM Historial');
             returnList = result.recordset;
         } catch (error) {
             console.log(error);
@@ -21,16 +21,15 @@ export default class EventoService {
     }
 
 
-    insert = async (evento) => {
+    insert = async (filaNueva) => {
         let rowsAffected = 0;
         console.log('insert')
         try {
             let pool = await sql.connect(config);
             let result = await pool.request()
-                .input('pNombre', sql.VarChar, evento?.nombre ?? '')
-                .input('pFecha', sql.DateTime, evento?.fecha ?? '')
-                .input('pDescripcion', sql.VarChar, evento?.descripcion ?? '')
-                .query('insert into Evento( Nombre, Fecha, Descripcion) VALUES ( @pNombre, @pFecha, @pDescripcion)');
+                .input('pMedicamento', sql.VarChar, filaNueva?.medicamento ?? '')
+                .input('pFecha', sql.DateTime, filaNueva?.fecha ?? '')
+                .query('insert into Historial(Medicamento, Fecha) VALUES ( @pMedicamento, @pFecha )');
             rowsAffected = result.rowsAffected;
         } catch (error) {
             console.log(error);
@@ -38,17 +37,16 @@ export default class EventoService {
         return rowsAffected;
     }
 
-    update = async (evento) => {
+    update = async (filaHistorial) => {
         console.log('update')
         let rowsAffected = 0;
         try {
             let pool = await sql.connect(config);
             let result = await pool.request()
-                .input('pNombre', sql.VarChar, evento?.nombre ?? '')
-                .input('pFecha', sql.DateTime, evento?.fecha ?? '')
-                .input('pDescripcion', sql.VarChar, evento?.descripcion ?? '')
-                .input('pId', sql.Float, evento?.id ?? '')
-                .query('update Evento SET Nombre = @pNombre, Fecha = @pFecha, Descripcion = @pDescripcion WHERE Id = @pId');
+                .input('pMedicamento', sql.VarChar, filaHistorial?.medicamento ?? '')
+                .input('pFecha', sql.DateTime, filaHistorial?.fecha ?? '')
+                .input('pId', sql.Float, filaHistorial?.id ?? '')
+                .query('update Evento SET Medicamento = @pMedicamento, Fecha = @pFecha WHERE Id = @pId');
             rowsAffected = result.rowsAffected;
         } catch (error) {
             console.log(error);
@@ -64,7 +62,7 @@ export default class EventoService {
             let pool = await sql.connect(config);
             let result = await pool.request()
                 .input('pId', sql.Int, id)
-                .query('DELETE FROM Evento WHERE Id = @pId');
+                .query('DELETE FROM Historial WHERE Id = @pId');
             rowsAffected = result.rowsAffected;
             console.log('rowsAffected');
             console.log(rowsAffected);

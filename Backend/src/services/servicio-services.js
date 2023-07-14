@@ -12,7 +12,7 @@ export default class ServicioService {
             let pool = await sql.connect(config);
             let result = await pool.request()
                 .query('SELECT * FROM Servicios');
-                returnList = result.recordset;
+            returnList = result.recordset;
         } catch (error) {
             console.log(error);
             Escribir(error);
@@ -20,7 +20,7 @@ export default class ServicioService {
         return returnList;
     }
 
-//PREGUNTARLE A POLSHU QUE COSAS PONER EN LO DE LOS PARAMETROS
+    //PREGUNTARLE A POLSHU QUE COSAS PONER EN LO DE LOS PARAMETROS
     insert = async (servicio) => {
         let rowsAffected = 0;
         console.log('insert')

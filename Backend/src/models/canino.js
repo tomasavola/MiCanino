@@ -1,5 +1,5 @@
-export default class Canino{
-    constructor(id, nombre, fechaNacimiento, descripcion,peso,idRaza,foto,partidaNacimiento,carnetVacunacion){
+export default class Canino {
+    constructor(id, nombre, fechaNacimiento, descripcion, peso, idRaza, foto, partidaNacimiento, carnetVacunacion) {
         this.id = id;
         this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;
@@ -10,5 +10,5 @@ export default class Canino{
         this.partidaNacimiento = partidaNacimiento;
         this.carnetVacunacion = carnetVacunacion;
     }
-    
+
 }

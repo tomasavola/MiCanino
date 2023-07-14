@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
   let cuerpo = req.body;
 
   const usuario = await usuarioLoginService.getByEmailPassword(cuerpo.mail, cuerpo.password);
-  if (usuario!=null){
+  if (usuario != null) {
     respuesta = res.status(200).json(usuario);
   } else {
     respuesta = res.status(404).send(`No se encontro el usuario  (${cuerpo}).`);
