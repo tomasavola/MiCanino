@@ -55,7 +55,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        let caninosPerdidos = await caninoService.getById(req.params.id);
+        let caninosPerdidos = await caninoPerdidoService.getById(req.params.id);
         res.status(200).send(caninosPerdidos);
     } catch (e) {
         console.log(e);

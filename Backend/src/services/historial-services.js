@@ -45,7 +45,7 @@ export default class HistorialService {
             let result = await pool.request()
                 .input('pMedicamento', sql.VarChar, filaHistorial?.medicamento ?? '')
                 .input('pFecha', sql.DateTime, filaHistorial?.fecha ?? '')
-                .input('pId', sql.Float, filaHistorial?.id ?? '')
+                .input('pId', sql.int, filaHistorial?.id ?? '')
                 .query('update Evento SET Medicamento = @pMedicamento, Fecha = @pFecha WHERE Id = @pId');
             rowsAffected = result.rowsAffected;
         } catch (error) {
