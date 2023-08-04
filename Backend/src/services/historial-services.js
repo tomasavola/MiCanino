@@ -29,7 +29,9 @@ export default class HistorialService {
             let result = await pool.request()
                 .input('pMedicamento', sql.VarChar, filaNueva?.medicamento ?? '')
                 .input('pFecha', sql.DateTime, filaNueva?.fecha ?? '')
-                .query('insert into Historial(Medicamento, Fecha) VALUES ( @pMedicamento, @pFecha )');
+                .input('pDescripcion', sql.VarChar, filaNueva?.descripcion ?? '')
+
+                .query('insert into Historial(Medicamento, Fecha, Descripcion) VALUES ( @pMedicamento, @pFecha, @pDescripcion )');
             rowsAffected = result.rowsAffected;
         } catch (error) {
             console.log(error);
@@ -46,7 +48,9 @@ export default class HistorialService {
                 .input('pMedicamento', sql.VarChar, filaHistorial?.medicamento ?? '')
                 .input('pFecha', sql.DateTime, filaHistorial?.fecha ?? '')
                 .input('pId', sql.int, filaHistorial?.id ?? '')
-                .query('update Evento SET Medicamento = @pMedicamento, Fecha = @pFecha WHERE Id = @pId');
+                .input('pDescripcion', sql.VarChar, filaHistorial?.descripcion ?? '')
+
+                .query('update Evento SET Medicamento = @pMedicamento, Fecha = @pFecha, Descripcion = @pDescripcion WHERE Id = @pId');
             rowsAffected = result.rowsAffected;
         } catch (error) {
             console.log(error);
