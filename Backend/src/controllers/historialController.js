@@ -30,6 +30,7 @@ router.put('/:id', async (req, res) => {
 
 
 router.get('/', async (req, res) => {
+  console.log("GETALL de historial")
   try {
     let historial = await historialService.getAll();
     res.status(200).send(historial);

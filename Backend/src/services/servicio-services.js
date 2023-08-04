@@ -20,7 +20,7 @@ export default class ServicioService {
         return returnList;
     }
 
-    //PREGUNTARLE A POLSHU QUE COSAS PONER EN LO DE LOS PARAMETROS
+    
     insert = async (servicio) => {
         let rowsAffected = 0;
         console.log('insert')

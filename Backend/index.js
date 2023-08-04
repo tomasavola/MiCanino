@@ -17,13 +17,15 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 app.use('/api/caninos/', CaninoRouter);
-app.use('/api/caninos/usuario/', UsuarioRouter);
-app.use('/api/caninos/login/', UsuarioLoginRouter);
-app.use('/api/caninos/servicio/', ServicioRouter);
-app.use('/api/caninos/evento/', EventoRouter);
-app.use('/api/caninos/historial/', HistorialRouter);
-app.use('/api/caninos/caninoPerdido/', CaninoPerdidoRouter);
+app.use('/api/evento/', EventoRouter);
+app.use('/api/usuario/', UsuarioRouter);
+app.use('/api/login/', UsuarioLoginRouter);
+app.use('/api/servicio/', ServicioRouter);
+app.use('/api/historial/', HistorialRouter);
+app.use('/api/caninoPerdido/', CaninoPerdidoRouter);
+/*
 
+*/
 
 
 

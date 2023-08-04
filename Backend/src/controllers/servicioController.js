@@ -18,10 +18,9 @@ router.post('/', async (req, res) => {
 })
 
 router.get('/', async (req, res) => {
-    console.log("CONTROLLER")
     try {
-        let servicio = await servicioService.getAll();
-        res.status(200).send(servicio);
+        let servicios = await servicioService.getAll();
+        res.status(200).send(servicios);
     } catch (e) {
         console.log(e);
         res.status(404).send('<p>No se encontro el canino</p>');

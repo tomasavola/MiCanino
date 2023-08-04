@@ -47,7 +47,7 @@ export default class EventoService {
                 .input('pNombre', sql.VarChar, evento?.nombre ?? '')
                 .input('pFecha', sql.DateTime, evento?.fecha ?? '')
                 .input('pDescripcion', sql.VarChar, evento?.descripcion ?? '')
-                .input('pId', sql.Float, evento?.id ?? '')
+                .input('pId', sql.int, evento?.id ?? '')
                 .query('update Evento SET Nombre = @pNombre, Fecha = @pFecha, Descripcion = @pDescripcion WHERE Id = @pId');
             rowsAffected = result.rowsAffected;
         } catch (error) {
