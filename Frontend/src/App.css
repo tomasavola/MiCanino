@@ -261,11 +261,25 @@ td {
 
 .edit-icon, .delete-icon {
   font-size: 18px;
-  color: #666;
+  color: #000000;
   cursor: pointer;
   transition: color 0.3s;
+  margin-right: 350px;
 }
 
+.edit-button{
+background-color: rgb(255, 176, 5);
+width: 2px;
+height: 35px;
+}
+.delete-button{
+  size: 3px;
+  background-color: rgb(255, 5, 5);
+  width: 2px;
+  height: 35px;
+
+  }
+  
 .edit-icon:hover, .delete-icon:hover {
   color: #333;
 }

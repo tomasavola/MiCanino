@@ -61,11 +61,11 @@ export default function HistorialMedicamentos() {
                             <td className="letraNegra">{medicamento.fecha}</td>
                             <td className="letraNegra">{medicamento.descripcion}</td>
                             <td className="actions">
-                                <button onClick={() => editarMedicamento(index)}>
-                                    <RiEdit2Line className="edit-icon" size={12}/>
+                                <button className='edit-button' onClick={() => editarMedicamento(index)}>
+                                    <RiEdit2Line className="edit-icon" size={17}/>
                                 </button>
-                                <button onClick={() => eliminarMedicamento(index)}>
-                                    <RiDeleteBin2Line className="delete-icon" size={12}/>
+                                <button className='delete-button' onClick={() => eliminarMedicamento(index)}>
+                                    <RiDeleteBin2Line className="delete-icon" size={17} />
                                 </button>
                             </td>
                         </tr>

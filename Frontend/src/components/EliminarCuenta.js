@@ -33,12 +33,20 @@ export default function EliminarCuenta() {
     return (
         <div className="eliminar-cuenta-container">
             <h1>Eliminar Cuenta</h1>
-            <button onClick={() => setShowPopup(true)}>Eliminar Cuenta</button>
+            <p>¿Estás seguro de que deseas eliminar tu cuenta?</p>
+            <div className="button-container">
+                <button className="confirm-button" onClick={handleEliminarCuenta}>Sí</button>
+                <button className="cancel-button" onClick={() => setShowPopup(false)}>No</button>
+            </div>
             {showPopup && (
-                <div className="popup">
-                    <p>¿Estás seguro de que deseas eliminar tu cuenta?</p>
-                    <button onClick={handleEliminarCuenta}>Sí</button>
-                    <button onClick={() => setShowPopup(false)}>No</button>
+                <div className="popup-background">
+                    <div className="popup">
+                        <p>¿Estás seguro de que deseas eliminar tu cuenta?</p>
+                        <div className="button-container">
+                            <button className="confirm-button" onClick={handleEliminarCuenta}>Sí</button>
+                            <button className="cancel-button" onClick={() => setShowPopup(false)}>No</button>
+                        </div>
+                    </div>
                 </div>
             )}
         </div>
