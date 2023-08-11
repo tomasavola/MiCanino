@@ -21,14 +21,18 @@ router.post('/', async (req, res) => {
 })
 
 router.put('/:id', async (req, res) => {
+    console.log("CaninoPerdidoController PUT")
     try {
         let caninoPerdidoNuevo = req.body;
+        caninoPerdidoNuevo.id = 
         console.log(caninoPerdidoNuevo);
         let rowsAffected = await caninoPerdidoService.update(caninoPerdidoNuevo);
+        console.log("CaninoPerdidoController PUT antes del Return")
         res.status(200).json({ resultado: true });
     } catch (e) {
+        console.log("CaninoPerdidoController PUT antes del Error")
         res.status(404).json({ resultado: false });
-    } res.status(404).send('<p>No se actualizo el canino perdido</p>');
+    } //res.status(404).send('<p>No se actualizo el canino perdido</p>');
 }
 );
 /*
