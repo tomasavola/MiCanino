@@ -72,18 +72,20 @@ export default class CaninoPerdidoService {
 
     update = async (caninoPerdido) => {
         console.log('update')
+        console.log(caninoPerdido);
         let rowsAffected = 0;
         try {
-            let pool = await sql.connect(config);
+            let pool = await sql.connect(config);       
             let result = await pool.request()
-             .input('pUbicacion', sql.VarChar, caninoPerdido?.ubicacion ?? '')
+                .input('pUbicacion', sql.VarChar, caninoPerdido?.ubicacion ?? '')
                 .input('pFechaPerdido', sql.DateTime, caninoPerdido?.fechaPerdido ?? '')
                 .input('pId', sql.Int, caninoPerdido?.id ?? '')
-                .query('update Mascota SET Ubicacion = @pUbicacion, FechaPerdido = @pFechaPerdido WHERE Id = @pId');
+                .query('update MascotaPerdida SET Ubicacion = @pUbicacion, FechaPerdido = @pFechaPerdido WHERE Id = @pId');
             rowsAffected = result.rowsAffected;
         } catch (error) {
             console.log(error);
         }
+        console.log('fin update')
         return rowsAffected;
     }
 
