@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Host from './Host';
+import NavBar from "./NavBar";
+import Logos from "./Logos";
+import FlechaVolver from './FlechaVolver';
 
 function App() {
     const [data, setData] = useState([]);
@@ -18,6 +21,9 @@ function App() {
 
     return (
         <div>
+            <FlechaVolver />
+            <Logos />
+            <NavBar />
             <h1>Perfil Mascota</h1>
             <ul>
                 {data.map(canino => (
