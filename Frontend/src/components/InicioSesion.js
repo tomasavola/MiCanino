@@ -11,7 +11,7 @@ export default function InicioSesion() {
         event.preventDefault();
 
         try {
-            const response = await fetch("http://A-PHZ2-CIDI-053:5000/api/login", {
+            const response = await fetch("http://A-PHZ2-CIDI-005:5000/api/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -30,6 +30,20 @@ export default function InicioSesion() {
         } catch (error) {
             console.error("Error al iniciar sesión:", error);
         }
+
+        fetch('http://A-PHZ2-CIDI-005:5000/api/login')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('La solicitud no fue exitosa');
+    }
+    return response.json();
+  })
+  .then(data => {
+    
+  })
+  .catch(error => {
+    console.error('Error al realizar la solicitud:', error);
+  });
     }
 
     return (
