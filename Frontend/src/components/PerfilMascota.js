@@ -5,19 +5,22 @@ import NavBar from "./NavBar";
 import Logos from "./Logos";
 import FlechaVolver from './FlechaVolver';
 
-function App() {
+function PerfilMascota() {
     const [data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // Utilizamos axios para realizar la solicitud a la API
-        axios.get(`http://${Host}:5000/api/caninos/`)
+        const id = 3;
+        setIsLoading(true);
+        axios.get(`http://${Host}:5000/api/caninos/${id}`)
             .then(response => {
                 setData(response.data);
+                setIsLoading(false);
             })
             .catch(error => {
                 console.error('Error al obtener datos:', error);
             });
-    }, []); // El array vacío asegura que useEffect se ejecute solo una vez al montar el componente
+    }, []);
 
     return (
         <div>
@@ -25,18 +28,18 @@ function App() {
             <Logos />
             <NavBar />
             <h1>Perfil Mascota</h1>
-            <ul>
-                {data.map(canino => (
-                    <li key={canino.id}>
-                        <strong>Raza:</strong> {canino.raza}<br />
-                        <strong>Fecha de Nacimiento:</strong> {canino.fecha}<br />
-                        <strong>Descripción:</strong> {canino.descripcion}<br />
-                        <strong>Peso:</strong> {canino.peso} kg
-                    </li>
-                ))}
-            </ul>
+            {isLoading ? (
+                <p>Cargando...</p>
+            ) : (
+                <div>
+                    <p>Raza:</p> {data.raza}<br />
+                    <p>Fecha de Nacimiento:</p> {data.fecha}<br />
+                    <p>Descripción:</p> {data.descripcion}<br />
+                    <p>Peso:</p> {data.peso} kg
+                </div>
+            )}
         </div>
     );
 }
 
-export default App;
+export default PerfilMascota;
