@@ -124,3 +124,4 @@ RequestError: Invalid object name 'Usuarios'. AT UsuarioLoginService/GetUsuarioB
 RequestError: Invalid object name 'Usuarios'. AT UsuarioLoginService/GetUsuarioByNamePassword
 RequestError: Invalid object name 'Usuarios'. AT UsuarioLoginService/GetUsuarioByNamePassword
 RequestError: Invalid object name 'Usuarios'. AT UsuarioLoginService/GetUsuarioByNamePassword
+ConnectionError: Login failed for user 'Mascota'. AT UsuarioLoginService/GetUsuarioByNamePassword
