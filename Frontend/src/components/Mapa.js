@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
+import { FaMapMarkerAlt } from 'react-icons/fa';
+
+
+import 'leaflet/dist/leaflet.css'; // Importa los estilos de Leaflet
 
 const Mapa = ({ ubicaciones }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -29,7 +33,7 @@ const Mapa = ({ ubicaciones }) => {
   }, [searchQuery, ubicaciones]);
 
   const customIcon = new L.Icon({
-    iconUrl: 'icon.png', // Reemplaza con la URL de tu icono personalizado
+    iconUrl: <FaMapMarkerAlt />, // Reemplaza con la URL de tu icono personalizado
     iconSize: [32, 32],
     iconAnchor: [16, 32],
   });
@@ -44,26 +48,28 @@ const Mapa = ({ ubicaciones }) => {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
-      <MapContainer center={userLocation} zoom={14} style={{ width: '100%', height: '500px' }}>
-        <TileLayer
-          attribution="OpenStreetMap"
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {userLocation && (
-          <Marker position={userLocation} icon={customIcon}>
-            <Popup>Tu ubicación actual</Popup>
-          </Marker>
-        )}
-        {filteredUbicaciones.map((location) => (
-          <Marker
-            key={location.id}
-            position={[location.latitud, location.longitud]}
-            icon={customIcon}
-          >
-            <Popup>{location.nombre}</Popup>
-          </Marker>
-        ))}
-      </MapContainer>
+      <div style={{ height: '400px' }}>
+        <MapContainer center={userLocation} zoom={14} style={{ width: '100%', height: '100%' }}>
+          <TileLayer
+            attribution="OpenStreetMap"
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {userLocation && (
+            <Marker position={userLocation} icon={customIcon}>
+              <Popup>Tu ubicación actual</Popup>
+            </Marker>
+          )}
+          {filteredUbicaciones.map((location) => (
+            <Marker
+              key={location.id}
+              position={[location.latitud, location.longitud]}
+              icon={customIcon}
+            >
+              <Popup>{location.nombre}</Popup>
+            </Marker>
+          ))}
+        </MapContainer>
+      </div>
     </div>
   );
 };
