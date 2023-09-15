@@ -43,3 +43,29 @@
   padding-bottom: 50px;
   /* Ajusta el valor según el alto del navbar para evitar que se solape con el contenido */
 }
+
+/* Estilo para el menú desplegable */
+.otros-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo oscurecido */
+  z-index: 1000; /* Asegura que el menú esté por encima de otros elementos */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Toma toda la altura de la pantalla */
+  transition: transform 0.3s ease-in-out;
+  transform: translateY(-100%); /* Oculta el menú fuera de la pantalla inicialmente */
+}
+
+.otros-menu li {
+  margin: 10px 0;
+}
+
+/* Estilo para mostrar el menú desplegable */
+.otros-menu.active {
+  transform: translateY(0);
+}

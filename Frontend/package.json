@@ -20,6 +20,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
     "react-leaflet": "^4.2.1",
+    "react-native-dropdown-select-list": "^2.0.5",
     "react-navigation": "^4.4.4",
     "react-router-dom": "^6.13.0",
     "react-scripts": "5.0.1",

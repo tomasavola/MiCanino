@@ -11,7 +11,6 @@ import Home from './components/Home';
 import NavBar from './components/NavBar';
 import Salud from './components/Salud';
 import PerfilMascota from './components/PerfilMascota';
-import Otros from './components/Otros';
 import OlvidoContrasena from './components/OlvidoContrasena';
 import BrindaSerivcio from './components/BrindaServicio';
 import FormularioServicio1 from './components/FormularioServicio1';
@@ -248,17 +247,7 @@ function App() {
           </>
         } />
 
-        <Route path="/Otros" element={
-          <>
-            <div className="container">
-              <div className="row">
-                <div className="form-register">
-                  <Otros />
-                </div>
-              </div>
-            </div>
-          </>
-        } />
+
 
         <Route path="/Configuracion" element={
           <>
