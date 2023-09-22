@@ -3,6 +3,9 @@ import './App.css';
 import axios from 'axios';
 import FormularioMascota from './components/FormularioMascota'
 import FormularioRegistro from './components/FormularioRegistrarse';
+import CentroDeAdopcion from './components/CentroDeAdopcion';
+import MascotasPerdidas from './components/MascotasPerdidas';
+import CursosDeAdiestramiento from './components/CursosDeAdiestramiento';
 import Logo from './components/Logo'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -230,6 +233,40 @@ function App() {
               <div className="row">
                 <div className="form-register">
                   <Salud />
+                </div>
+              </div>
+            </div>
+          </>
+        } />
+
+        <Route path="/MascotasPerdidas" element={
+          <>
+            <div className="container">
+              <div className="row">
+                <div className="form-register">
+                  <MascotasPerdidas />
+                </div>
+              </div>
+            </div>
+          </>
+        } />
+        <Route path="/CentroDeAdopcion" element={
+          <>
+            <div className="container">
+              <div className="row">
+                <div className="form-register">
+                  <CentroDeAdopcion />
+                </div>
+              </div>
+            </div>
+          </>
+        } />
+        <Route path="/CursosDeAdiestramiento" element={
+          <>
+            <div className="container">
+              <div className="row">
+                <div className="form-register">
+                  <CursosDeAdiestramiento />
                 </div>
               </div>
             </div>
