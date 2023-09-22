@@ -24,6 +24,9 @@ export default function EliminarCuenta() {
             console.error('Error:', error);
         }
     };
+    const handleGoBack = () => {
+        navigate(-1);
+      };
 
     function eliminarYNavegar() {
         setShowPopup(false); // Cierra el pop-up
@@ -44,7 +47,7 @@ export default function EliminarCuenta() {
                         <p>¿Estás seguro de que deseas eliminar tu cuenta?</p>
                         <div className="button-container">
                             <button className="confirm-button" onClick={handleEliminarCuenta}>Sí</button>
-                            <button className="cancel-button" onClick={() => setShowPopup(false)}>No</button>
+                            <button className="cancel-button" onClick={handleGoBack}>No</button>
                         </div>
                     </div>
                 </div>

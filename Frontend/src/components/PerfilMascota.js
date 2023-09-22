@@ -42,7 +42,7 @@ function PerfilMascota() {
                     <p>Peso: {data.peso} kg</p>
                     <p>Partida de Nacimiento: {data.partidaNacimiento}</p>
                     <p>Carnet de Vacunación: {data.carnetVacunacion}</p>
-                    <Link to="/EditarPerfil">
+                    <Link to="/EditarPerfilCanino">
                         <button type="submit">Editar perfil</button>
                     </Link>
                 </div>

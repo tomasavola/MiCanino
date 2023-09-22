@@ -104,7 +104,7 @@ const Mapa = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <button onClick={() => setSearchQuery('')}>Limpiar</button>
+        <button type="submit" onClick={() => setSearchQuery('')}>Limpiar</button>
       </div>
     </div>
   );
