@@ -11,6 +11,7 @@ function CentroDeAdopcion() {
     <div>
       <FlechaVolver />
       <Logos />
+      <h1>Centro De Adopcion</h1>
 
 
       <NavBar />

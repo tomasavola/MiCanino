@@ -5,8 +5,8 @@ import React from 'react'
 export default function InfoCanino() {
     return (
         <div className="FotoYCambioCanino">
-            <FaDog size={70} />
-            <Link to="/Home">Bartolo</Link>
+            <Link to="/PerfilMascota"><FaDog size={50} /></Link>           
+             <Link to="/Home">Bartolo</Link>
             <FaAngleDown className="FlechaInfo" size={30} />
         </div>
     );

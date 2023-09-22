@@ -1,39 +1,28 @@
 import React, { useState } from 'react';
 import './NavBar.css';
-import { FaHome, FaAmbulance, FaDog, FaBars } from "react-icons/fa";
+import { FaHome, FaAmbulance, FaExclamationCircle  } from "react-icons/fa";
+import {GiJumpingDog, GiDogHouse} from "react-icons/gi"
 import { Link } from 'react-router-dom';
-import Dropdown from './DropdownMenu';
 
 export default function NavBar() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
 
   return (
     <nav className="navigation">
       <div className="navigation-menu">
         <ul>
           <li>
-            <Link to="/Home"><FaHome size={50} /></Link>
+            <Link to="/Home"><FaHome size={45} /></Link>
           </li>
           <li>
-            <Link to="/Salud"><FaAmbulance size={50} /></Link>
+            <Link to="/Salud"><FaAmbulance size={45} /></Link>
           </li>
-          <li>
-            <Link to="/PerfilMascota"><FaDog size={50} /></Link>
-          </li>
-          <li>
-            <div className="menu-icon" onClick={toggleDropdown}>
-              <FaBars color="#414040" size={50} />
-            </div>
-            {isDropdownOpen && (
-              <div className="dropdown-container">
-                <Dropdown />
-              </div>
-            )}
-          </li>
+
+         
+          <li><Link to="/MascotasPerdidas"><FaExclamationCircle size={45} /></Link></li>
+            <li><Link to="/CentroDeAdopcion"><GiDogHouse size={45} /></Link></li>
+            <li><Link to="/CursosDeAdiestramiento"><GiJumpingDog size={45} /></Link></li>
+
         </ul>
       </div>
     </nav>
