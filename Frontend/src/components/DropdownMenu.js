@@ -1,17 +1,15 @@
 import "./dropdown.css"
+import { Link } from "react-router-dom";
 
-const Dropdown = ({ open, trigger, menu }) => {
+function Dropdown(){
     return (
-      <div className="dropdown">
-        {trigger}
-        {open ? (
-          <ul className="menu">
-            {menu.map((menuItem, index) => (
-              <li key={index} className="menu-item">{menuItem}</li>
-            ))}
+      <div>
+          <ul>
+            <li><Link to="/MascotasPerdidas">Mascotas Perdidas</Link></li>
+            <li><Link to="/CentroDeAdopcion">Centro de Adopción</Link></li>
+            <li><Link to="/CursosDeAdiestramiento">Cursos de Adiestramiento</Link></li>
           </ul>
-        ) : null}
-      </div>
+        </div>
     );
 };
 
