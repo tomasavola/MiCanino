@@ -7,9 +7,12 @@ import FlechaVolver from './FlechaVolver';
 
 export default function Notificaciones() {
   const [notificaciones] = useState([
-    'Hay un nuevo bar pet friendly cerca de tu zona',
+    '¡Hay un nuevo bar pet friendly cerca de tu zona!',
     'Todavía tienes pendiente el curso “Luigi”',
     'Se ha reportado un perro perdido cerca de tu zona',
+    '!Abrió un una veterinaria en Rio de Janeiro 945!',
+    '¡Bartolo fue encontrado y ya se encuentra con su dueño!',
+
   ]);
 
   const [mostrarMas, setMostrarMas] = useState(false);
@@ -24,7 +27,6 @@ export default function Notificaciones() {
       <FlechaVolver />
       <Logos />
       <NavBar />
-      <h2>Notificaciones</h2>
       <div className="notificaciones">
         {notificaciones.map((notificacion, index) => (
           <div key={index} className="notificacion">

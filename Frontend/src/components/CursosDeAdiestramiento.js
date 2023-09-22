@@ -11,6 +11,7 @@ function CursosDeAdiestramiento() {
     <div>
       <FlechaVolver />
       <Logos />
+      <h1>Cursos de adiestramiento</h1>
 
 
       <NavBar />
