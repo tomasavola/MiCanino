@@ -6,7 +6,7 @@ import Logos from './Logos';
 import FlechaVolver from './FlechaVolver';
 import Host from './Host';
 
-function EditarPerfil() {
+function EditarPerfilCanino() {
   const navigate = useNavigate();
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -162,4 +162,4 @@ function EditarPerfil() {
   );
 }
 
-export default EditarPerfil;
+export default EditarPerfilCanino;

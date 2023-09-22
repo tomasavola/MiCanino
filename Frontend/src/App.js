@@ -19,7 +19,8 @@ import Bienvenida from './components/Bienvenida';
 import Configuracion from './components/Configuracion';
 import Notificaciones from './components/Notificaciones';
 import Logos from './components/Logos';
-import EditarPerfil from './components/EditarPerfil';
+import EditarPerfilCanino from './components/EditarPerfilCanino';
+import EditarPerfilUsuario from './components/EditarPerfilUsuario';
 import FormularioEvento from './components/FormularioEvento';
 import HistorialMedicamentos from './components/HistorialMedicamentos';
 import Host from './components/Host'
@@ -322,18 +323,41 @@ function App() {
           </>
         } />
 
-        <Route path="/EditarPerfil" element={
+        <Route path="/EditarPerfilCanino" element={
           <>
             <div className="container">
               <div className="row">
                 <div className="form-register">
-                  <EditarPerfil />
+                  <EditarPerfilCanino />
                 </div>
               </div>
             </div>
           </>
         } />
 
+        <Route path="/EditarPerfilUsuario" element={
+          <>
+            <div className="container">
+              <div className="row">
+                <div className="form-register">
+                  <EditarPerfilUsuario />
+                </div>
+              </div>
+            </div>
+          </>
+        } />
+
+        <Route path="/EditarPerfilUsuario" element={
+          <>
+            <div className="container">
+              <div className="row">
+                <div className="form-register">
+                  <EditarPerfilUsuario />
+                </div>
+              </div>
+            </div>
+          </>
+        } />
       </Routes>
     </Router>
   );
