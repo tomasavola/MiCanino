@@ -6,8 +6,6 @@ import Mapa from "./Mapa";
 import Saludo from "./Saludo";
 import Logos from "./Logos";
 import InfoCanino from "./InfoCanino";
-import SearchBar from "./SearchBar";
-import "./SearchBar.css";
 
 export default function Home() {
 
@@ -17,7 +15,6 @@ export default function Home() {
             <Logos />
             <Saludo />
             <Mapa />
-            <SearchBar />
             <NavBar />
         </div>
     );

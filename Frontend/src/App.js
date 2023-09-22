@@ -19,6 +19,7 @@ import Bienvenida from './components/Bienvenida';
 import Configuracion from './components/Configuracion';
 import Notificaciones from './components/Notificaciones';
 import Logos from './components/Logos';
+import EditarPerfil from './components/EditarPerfil';
 import FormularioEvento from './components/FormularioEvento';
 import HistorialMedicamentos from './components/HistorialMedicamentos';
 import Host from './components/Host'
@@ -320,6 +321,19 @@ function App() {
             </div>
           </>
         } />
+
+        <Route path="/EditarPerfil" element={
+          <>
+            <div className="container">
+              <div className="row">
+                <div className="form-register">
+                  <EditarPerfil />
+                </div>
+              </div>
+            </div>
+          </>
+        } />
+
       </Routes>
     </Router>
   );

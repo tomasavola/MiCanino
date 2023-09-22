@@ -3,13 +3,14 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { Icon } from 'leaflet';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 
-import 'leaflet/dist/leaflet.css'; // Importa los estilos de Leaflet
-import 'leaflet/dist/images/marker-icon-2x.png'; // Importa el ícono predeterminado de Leaflet
+import 'leaflet/dist/leaflet.css';
+import 'leaflet/dist/images/marker-icon-2x.png';
+import './Mapa.css'; // Importa el archivo CSS de estilo
 
 const Mapa = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredUbicaciones, setFilteredUbicaciones] = useState([]);
-  const [userLocation, setUserLocation] = useState([-34.6037, -58.3816]); // Coordenadas del Obelisco
+  const [userLocation, setUserLocation] = useState([-34.6037, -58.3816]);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -24,7 +25,6 @@ const Mapa = () => {
   }, []);
 
   useEffect(() => {
-    // Puedes cargar tus ubicaciones aquí si lo deseas
     const ubicaciones = [
       {
         id: 1,
@@ -38,13 +38,13 @@ const Mapa = () => {
         latitud: -34.5877631,
         longitud: -58.4589195,
       },
-      { 
+      {
         id: 3,
         nombre: 'Patio de Messi',
         latitud: 40.4530428,
         longitud: -3.6909086,
       },
-      { 
+      {
         id: 4,
         nombre: 'La Bombonera',
         latitud: -34.6356064,
@@ -74,14 +74,6 @@ const Mapa = () => {
 
   return (
     <div className="mapa-container">
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Buscar dirección..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </div>
       <div style={{ width: '100%', height: '400px' }}>
         <MapContainer center={userLocation} zoom={14} style={{ width: '100%', height: '100%' }}>
           <TileLayer
@@ -91,7 +83,7 @@ const Mapa = () => {
           <ChangeView center={userLocation} zoom={12} />
           {userLocation && (
             <Marker position={userLocation} icon={customIcon}>
-              <Popup>Ubicacion actual</Popup>
+              <Popup>Ubicación actual</Popup>
             </Marker>
           )}
           {filteredUbicaciones.map((location) => (
@@ -104,6 +96,15 @@ const Mapa = () => {
             </Marker>
           ))}
         </MapContainer>
+      </div>
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Buscar dirección..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <button onClick={() => setSearchQuery('')}>Limpiar</button>
       </div>
     </div>
   );
