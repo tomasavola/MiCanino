@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import Dropdown from './DropdownMenu';
 
 export default function NavBar() {
-  
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -26,14 +25,17 @@ export default function NavBar() {
             <Link to="/PerfilMascota"><FaDog size={50} /></Link>
           </li>
           <li>
-            <div onClick={toggleDropdown}>
-              <FaBars color="414040" size={50} />
+            <div className="menu-icon" onClick={toggleDropdown}>
+              <FaBars color="#414040" size={50} />
             </div>
-            {isDropdownOpen && <Dropdown />} {/* Mostrar el menú desplegable si isDropdownOpen es verdadero */}
+            {isDropdownOpen && (
+              <div className="dropdown-container">
+                <Dropdown />
+              </div>
+            )}
           </li>
         </ul>
       </div>
     </nav>
   );
 }
-
