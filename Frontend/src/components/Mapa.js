@@ -5,7 +5,7 @@ import { FaMapMarkerAlt } from 'react-icons/fa';
 
 import 'leaflet/dist/leaflet.css';
 import 'leaflet/dist/images/marker-icon-2x.png';
-import './Mapa.css'; // Importa el archivo CSS de estilo
+import './Mapa.css';
 
 const Mapa = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -52,7 +52,11 @@ const Mapa = () => {
       },
     ];
 
-    if (ubicaciones) {
+    if (searchQuery === '') {
+      // Si el campo de búsqueda está vacío, mostramos todas las ubicaciones.
+      setFilteredUbicaciones(ubicaciones);
+    } else {
+      // Filtramos las ubicaciones en función del nombre ingresado.
       const filteredLocations = ubicaciones.filter((location) =>
         location.nombre.toLowerCase().includes(searchQuery.toLowerCase())
       );
@@ -60,8 +64,15 @@ const Mapa = () => {
     }
   }, [searchQuery]);
 
-  const customIcon = new Icon({
+  const redIcon = new Icon({
     iconUrl: 'https://cdn-icons-png.flaticon.com/512/25/25613.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    color:red,
+  });
+  
+  const blueIcon = new Icon({
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/25/25612.png',
     iconSize: [32, 32],
     iconAnchor: [16, 32],
   });
@@ -82,19 +93,20 @@ const Mapa = () => {
           />
           <ChangeView center={userLocation} zoom={12} />
           {userLocation && (
-            <Marker position={userLocation} icon={customIcon}>
-              <Popup>Ubicación actual</Popup>
-            </Marker>
-          )}
-          {filteredUbicaciones.map((location) => (
-            <Marker
-              key={location.id}
-              position={[location.latitud, location.longitud]}
-              icon={customIcon}
-            >
-              <Popup>{location.nombre}</Popup>
-            </Marker>
-          ))}
+  <Marker position={userLocation} icon={redIcon}>
+    <Popup>Ubicación actual</Popup>
+  </Marker>
+)}
+
+{filteredUbicaciones.map((location) => (
+  <Marker
+    key={location.id}
+    position={[location.latitud, location.longitud]}
+    icon={blueIcon}
+  >
+    <Popup>{location.nombre}</Popup>
+  </Marker>
+))}
         </MapContainer>
       </div>
       <div className="search-container">
