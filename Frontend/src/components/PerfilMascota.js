@@ -16,6 +16,7 @@ function PerfilMascota() {
                 const response = await axios.get(`http://${Host}:5000/api/caninos/3`); // Reemplaza "3" con el ID del canino que deseas mostrar
                 setData(response.data);
                 setIsLoading(false);
+                console.log(response.data)
             } catch (error) {
                 console.error('Error al obtener datos:', error);
                 setIsLoading(false);

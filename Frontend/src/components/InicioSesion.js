@@ -4,7 +4,7 @@ import Host from "./Host";
 
 export default function InicioSesion() {
     const [mailState, setMail] = useState('');
-    const [contrasenaState, setContrasena] = useState('');
+    const [passwordState, setPassword] = useState('');
     const navigate = useNavigate();
 
     async function ingresarCuenta(event) {
@@ -18,7 +18,7 @@ export default function InicioSesion() {
                 },
                 body: JSON.stringify({
                     mail: mailState,
-                    contrasena: contrasenaState
+                    password: passwordState
                 })
             });
 
@@ -51,7 +51,7 @@ export default function InicioSesion() {
             <label className="letraNegra">Correo electrónico</label>
             <input type="text" name="mail" placeholder="Correo" className="controls" onChange={(e) => setMail(e.target.value)} />
             <label className="letraNegra">Contraseña</label>
-            <input type="password" name="contrasena" placeholder="Contraseña" className="controls" onChange={(e) => setContrasena(e.target.value)} />
+            <input type="password" name="password" placeholder="Contraseña" className="controls" onChange={(e) => setPassword(e.target.value)} />
             <button type="submit" className="botons">Iniciar sesión</button>
         </form>
     );
