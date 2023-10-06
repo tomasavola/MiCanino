@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function FormularioRegistro({ onAgregarCuenta }) {
-  const [nombre, setNombre] = useState("");
-  const [apellido, setApellido] = useState("");
-  const [mail, setMail] = useState("");
-  const [telefono, setTelefono] = useState("");
-  const [contrasena, setContrasena] = useState("");
+  const [Nombre, setNombre] = useState("");
+  const [Apellido, setApellido] = useState("");
+  const [Mail, setMail] = useState("");
+  const [Telefono, setTelefono] = useState("");
+  const [Password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
@@ -16,11 +16,11 @@ export default function FormularioRegistro({ onAgregarCuenta }) {
     
 
     const cuenta = {
-      nombre,
-      apellido,
-      mail,
-      telefono,
-      contrasena,
+      Nombre,
+      Apellido,
+      Mail,
+      Telefono,
+      Password,
     };
 
 try {
@@ -48,7 +48,7 @@ try {
     setApellido("");
     setMail("");
     setTelefono("");
-    setContrasena("");
+    setPassword("");
 
     agregarYNavegar();
   }
@@ -68,51 +68,51 @@ try {
         <label className="letraNegra">Nombre</label>
         <input
           type="text"
-          name="nombre"
+          name="Nombre"
           className="controls"
           placeholder="Nombre"
-          value={nombre}
+          value={Nombre}
           onChange={(e) => setNombre(e.target.value)}
           required
         />
         <label className="letraNegra">Apellido</label>
         <input
           type="text"
-          name="apellido"
+          name="Apellido"
           className="controls"
           placeholder="Apellido"
-          value={apellido}
+          value={Apellido}
           onChange={(e) => setApellido(e.target.value)}
           required
         />
         <label className="letraNegra">Correo electrónico</label>
         <input
           type="email"
-          name="mail"
+          name="Mail"
           className="controls"
           placeholder="Correo"
-          value={mail}
+          value={Mail}
           onChange={(e) => setMail(e.target.value)}
           required
         />
         <label className="letraNegra">Telefono</label>
         <input
           type="tel"
-          name="telefono"
+          name="Telefono"
           className="controls"
           placeholder="Telefono"
-          value={telefono}
+          value={Telefono}
           onChange={(e) => setTelefono(e.target.value)}
           required
         />
         <label className="letraNegra">Contraseña</label>
         <input
           type="password"
-          name="contrasena"
+          name="Password"
           className="controls"
           placeholder="Contraseña"
-          value={contrasena}
-          onChange={(e) => setContrasena(e.target.value)}
+          value={Password}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
 
