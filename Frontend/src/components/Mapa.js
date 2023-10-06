@@ -77,10 +77,11 @@ const Mapa = () => {
   });
 
   const greenIcon = new Icon({
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/25/25613.png', // Reemplaza 'URL_DEL_ICONO_VERDE' con la URL del ícono verde que desees usar.
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/2111/2776067.png',
     iconSize: [32, 32],
     iconAnchor: [16, 32],
   });
+  
 
   const ChangeView = ({ center, zoom }) => {
     const map = useMap();
