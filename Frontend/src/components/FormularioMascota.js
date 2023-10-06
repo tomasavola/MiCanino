@@ -63,7 +63,7 @@ export default function FormularioMascota({ onAgregarMascota }) {
                 <label className="letraNegra">Descripcion</label>
                 <textarea name="descripcion" className="controls" placeholder="Descripcion" onChange={(i) => setDescripcion(i.target.value)}></textarea>
                 <label className="letraNegra">Peso en kilos</label>
-                <input type="text" name="peso" className="controls" placeholder="Peso" onChange={(i) => setPeso(i.target.value)} />
+                <input type="number" name="peso" className="controls" placeholder="Peso" onChange={(i) => setPeso(i.target.value)} />
 
                 <button type="submit" className="botons">Agregar Mascota</button>
             </form>
