@@ -69,9 +69,15 @@ const Mapa = () => {
     iconSize: [32, 32],
     iconAnchor: [16, 32],
   });
-  
-  const blueIcon = new Icon({
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/25/25612.png',
+
+  const blueIcon = new Icon({     
+    iconUrl: 'https://www.freepik.com/icon/location-pin_2776067#fromView=keyword&term=Pin&page=1&position=13',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+  });
+
+  const greenIcon = new Icon({
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/25/25613.png', // Reemplaza 'URL_DEL_ICONO_VERDE' con la URL del ícono verde que desees usar.
     iconSize: [32, 32],
     iconAnchor: [16, 32],
   });
@@ -92,20 +98,20 @@ const Mapa = () => {
           />
           <ChangeView center={userLocation} zoom={12} />
           {userLocation && (
-  <Marker position={userLocation} icon={redIcon}>
-    <Popup>Ubicación actual</Popup>
-  </Marker>
-)}
+            <Marker position={userLocation} icon={redIcon}>
+              <Popup>Ubicación actual</Popup>
+            </Marker>
+          )}
 
-{filteredUbicaciones.map((location) => (
-  <Marker
-    key={location.id}
-    position={[location.latitud, location.longitud]}
-    icon={blueIcon}
-  >
-    <Popup>{location.nombre}</Popup>
-  </Marker>
-))}
+          {filteredUbicaciones.map((location) => (
+            <Marker
+              key={location.id}
+              position={[location.latitud, location.longitud]}
+              icon={greenIcon} // Utiliza el ícono verde para las ubicaciones registradas.
+            >
+              <Popup>{location.nombre}</Popup>
+            </Marker>
+          ))}
         </MapContainer>
       </div>
       <div className="search-container">
