@@ -68,7 +68,6 @@ const Mapa = () => {
     iconUrl: 'https://cdn-icons-png.flaticon.com/512/25/25613.png',
     iconSize: [32, 32],
     iconAnchor: [16, 32],
-    color:red,
   });
   
   const blueIcon = new Icon({
