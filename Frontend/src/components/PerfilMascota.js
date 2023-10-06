@@ -14,7 +14,7 @@ function PerfilMascota() {
         const obtenerPerfilCanino = async () => {
             try {
 
-                const response = await axios.get(`http://A-PHZ2-CIDI-005:5000/api/caninos/1`); // Reemplaza "3" con el ID del canino que deseas mostrar
+                const response = await axios.get(`http://A-PHZ2-CIDI-005:5000/api/caninos/2`); // Reemplaza "3" con el ID del canino que deseas mostrar
                 setData(response.data);
                 setIsLoading(false);
                 console.log(response.data)

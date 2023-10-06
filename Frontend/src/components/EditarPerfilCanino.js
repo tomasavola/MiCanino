@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import NavBar from './NavBar';
 import Logos from './Logos';
 import FlechaVolver from './FlechaVolver';
@@ -23,8 +23,17 @@ function EditarPerfilCanino() {
   useEffect(() => {
     const obtenerPerfilCanino = async () => {
       try {
-        const response = await axios.get(`http://${Host}:5000/api/caninos/3`); // Reemplaza "3" con el ID del canino que deseas editar
-        setData(response.data);
+        const response = await axios.get(`http://A-PHZ2-CIDI-005:5000/api/caninos/3`);
+        const perfilCanino = response.data; // Datos del perfil actual
+        setFormData({
+          nombre: perfilCanino.Nombre || '', // Asegúrate de proporcionar un valor predeterminado en caso de que sea nulo
+        raza: perfilCanino.IdRaza || '',
+        fechaNacimiento: perfilCanino.FechaNacimiento || '',
+        descripcion: perfilCanino.Descripcion || '',
+        peso: perfilCanino.Peso || '',
+        partidaNacimiento: null,
+        carnetVacunacion: null,
+        });
         setIsLoading(false);
       } catch (error) {
         console.error('Error al obtener datos:', error);
@@ -63,8 +72,17 @@ function EditarPerfilCanino() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://${Host}:5000/api/caninos/3`, formData); // Reemplaza "3" con el ID del canino que deseas editar
-      navigate(-1); // Regresamos a la página anterior utilizando navigate con valor -1
+      await axios.put(`http://A-PHZ2-CIDI-005:5000/api/caninos/3`, formData);
+      navigate(-1);
+      setFormData({
+        nombre: '',
+        raza: '',
+        fechaNacimiento: '',
+        descripcion: '',
+        peso: '',
+        partidaNacimiento: null,
+        carnetVacunacion: null,
+      });
     } catch (error) {
       console.error('Error al editar el perfil:', error);
     }
@@ -153,9 +171,11 @@ function EditarPerfilCanino() {
               onChange={(e) => handleFileInputChange(e, 'carnetVacunacion')}
             />
           </div>
-          <button type="submit" className="botons">
-            Guardar Cambios
-          </button>
+          <Link to="/PerfilMascota">
+            <button type="submit" className="botons">
+              Guardar Cambios
+            </button>
+          </Link>
         </form>
       )}
     </div>
