@@ -360,7 +360,7 @@ function App() {
           </>
         } />
 
-        <Route path="/EditarPerfilCanino" element={
+        <Route path="/EditarPerfilCanino/:id" element={
           <>
             <div className="container">
               <div className="row">

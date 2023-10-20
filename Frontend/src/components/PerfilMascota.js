@@ -13,11 +13,9 @@ function PerfilMascota() {
     useEffect(() => {
         const obtenerPerfilCanino = async () => {
             try {
-
-                const response = await axios.get(`http://A-PHZ2-CIDI-005:5000/api/caninos/2`); // Reemplaza "3" con el ID del canino que deseas mostrar
+                const response = await axios.get(`http://A-PHZ2-CIDI-005:5000/api/caninos/3`); // Reemplaza "3" con el ID del canino que deseas mostrar
                 setData(response.data);
                 setIsLoading(false);
-                console.log(response.data)
             } catch (error) {
                 console.error('Error al obtener datos:', error);
                 setIsLoading(false);
@@ -44,7 +42,7 @@ function PerfilMascota() {
                     <p>Peso: {data.Peso} kg</p>
                     <p>Partida de Nacimiento: {data.PartidaNacimiento}</p>
                     <p>Carnet de Vacunación: {data.CarnetVacunacion}</p>
-                    <Link to="/EditarPerfilCanino">
+                    <Link to={`/EditarPerfilCanino/${data.Id}`}> {/* Pasa el ID del canino a la página de edición */}
                         <button type="submit">Editar perfil</button>
                     </Link>
                 </div>
