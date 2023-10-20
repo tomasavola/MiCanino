@@ -12,23 +12,31 @@ import Host from "./Host";
 
 export default function Home() {
     const { caninoId } = useParams();
-    const [canino, setCanino] = useState({ nombre: '' }); // Establece un valor inicial para 'nombre'.
+    const [canino, setCanino] = useState({ nombre: '' });
   
-    let loadCanino = () => {
-      axios
-        .get(`http://${Host}:5000/api/caninos/`+caninoId)
-        .then((result) => {
-          setCanino(result.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+    
+    const userId = 'usuario_autenticado';
   
     useEffect(() => {
-      loadCanino();
-    }, [caninoId]);
-  
+        axios
+          .get(`http://${Host}:5000/api/usuario/${userId}`)
+          .then((result) => {
+            const caninoIdAsociado = result.data.caninoId;
+            console.log("caninoIdAsociado:", caninoIdAsociado); // Agrega esta línea para depurar
+      
+            axios
+              .get(`http://${Host}:5000/api/caninos/${caninoIdAsociado}`)
+              .then((caninoResult) => {
+                setCanino(caninoResult.data);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }, [caninoId]);
     return (
       <div>
         <div className="FotoYCambioCanino">

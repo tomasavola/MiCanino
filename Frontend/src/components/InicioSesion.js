@@ -5,6 +5,7 @@ import Host from "./Host";
 export default function InicioSesion() {
     const [mailState, setMail] = useState('');
     const [passwordState, setPassword] = useState('');
+    const [idUsuario, setIdUsuario] = useState('');
     const navigate = useNavigate();
 
     async function ingresarCuenta(event) {
@@ -23,6 +24,9 @@ export default function InicioSesion() {
             });
 
             if (response.ok) {
+                const userData = await response.json();
+                const userId = userData.id; 
+                setIdUsuario(userId);
                 navigate('/Home');
             } else {
                 alert("Credenciales incorrectas");
