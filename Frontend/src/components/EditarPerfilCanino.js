@@ -1,113 +1,176 @@
 import React, { useState, useEffect } from 'react';
-import { RiDeleteBin2Line, RiEdit2Line } from 'react-icons/ri';
-import NavBar from "./NavBar";
-import Logos from "./Logos";
+import axios from 'axios';
+import { useNavigate, Link, useParams } from 'react-router-dom';
+import NavBar from './NavBar';
+import Logos from './Logos';
 import FlechaVolver from './FlechaVolver';
 
-export default function HistorialMedicamentos() {
-    const [medicamentos, setMedicamentos] = useState([]);
-    const [nombre, setNombre] = useState('');
-    const [fecha, setFecha] = useState('');
-    const [descripcion, setDescripcion] = useState('');
+function EditarPerfilCanino() {
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [formData, setFormData] = useState({
+    nombre: '',
+    raza: '',
+    fechaNacimiento: '',
+    descripcion: '',
+    peso: '',
+    partidaNacimiento: null,
+    carnetVacunacion: null,
+  });
 
-    // Recuperar medicamentos almacenados en localStorage al cargar la página
-    useEffect(() => {
-        const medicamentosGuardados = localStorage.getItem('Medicamentos');
-        if (medicamentosGuardados) {
-            setMedicamentos(JSON.parse(medicamentosGuardados));
-        }
-    }, []);
-
-    const agregarMedicamento = () => {
-        if (nombre && fecha && descripcion) {
-            const nuevoMedicamento = {
-                nombre,
-                fecha,
-                descripcion,
-            };
-            const nuevosMedicamentos = [...medicamentos, nuevoMedicamento];
-            setMedicamentos(nuevosMedicamentos);
-            setNombre('');
-            setFecha('');
-            setDescripcion('');
-            // Almacenar los medicamentos en localStorage
-            localStorage.setItem('Medicamentos', JSON.stringify(nuevosMedicamentos));
-        }
-    };
-
-    const eliminarMedicamento = (index) => {
-        const nuevosMedicamentos = medicamentos.filter((_, i) => i !== index);
-        setMedicamentos(nuevosMedicamentos);
-        // Actualizar medicamentos en localStorage
-        localStorage.setItem('Medicamentos', JSON.stringify(nuevosMedicamentos));
-    };
-
-    const editarMedicamento = (index) => {
-        const medicamentoAEditar = medicamentos[index];
-        setNombre(medicamentoAEditar.nombre);
-        setFecha(medicamentoAEditar.fecha);
-        setDescripcion(medicamentoAEditar.descripcion);
-        eliminarMedicamento(index);
-    };
-
-    const ordenarMedicamentosPorFecha = () => {
-        const medicamentosOrdenados = [...medicamentos].sort((a, b) => {
-            return new Date(b.fecha) - new Date(a.fecha);
+  useEffect(() => {
+    const obtenerPerfilCanino = async () => {
+      try {
+        const response = await axios.get(`http://A-PHZ2-CIDI-005:5000/api/caninos/${id}`);
+        const perfilCanino = response.data;
+        setFormData({
+          nombre: perfilCanino.Nombre || '',
+          raza: perfilCanino.IdRaza || '',
+          fechaNacimiento: perfilCanino.FechaNacimiento || '',
+          descripcion: perfilCanino.Descripcion || '',
+          peso: perfilCanino.Peso || '',
+          partidaNacimiento: null,
+          carnetVacunacion: null,
         });
-        setMedicamentos(medicamentosOrdenados);
-        // Actualizar medicamentos ordenados en localStorage
-        localStorage.setItem('Medicamentos', JSON.stringify(medicamentosOrdenados));
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error al obtener datos:', error);
+        setIsLoading(false);
+      }
     };
 
-    return (
-        <div className="container">
-            <FlechaVolver />
-            <Logos />
-            <NavBar />
-            <h1 className="TituloMedicamento">Historial de Medicamentos</h1>
-            <table>
-                <tbody>
-                    {medicamentos.map((medicamento, index) => (
-                        <tr key={index}>
-                            <td className="letraNegra">{medicamento.nombre}</td>
-                            <td className="letraNegra">{medicamento.fecha}</td>
-                            <td className="letraNegra">{medicamento.descripcion}</td>
-                            <td className="actions">
-                                <button className='edit-button' onClick={() => editarMedicamento(index)}>
-                                    <RiEdit2Line className="edit-icon" size={17} />
-                                </button>
-                                <button className='delete-button' onClick={() => eliminarMedicamento(index)}>
-                                    <RiDeleteBin2Line className="delete-icon" size={17} />
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <div className="add-form">
-                <input
-                    type="text"
-                    placeholder="Nombre"
-                    value={nombre}
-                    onChange={(e) => setNombre(e.target.value)}
-                    className="controls"
-                />
-                <input
-                    type="date"
-                    value={fecha}
-                    onChange={(e) => setFecha(e.target.value)}
-                    className="controls"
-                />
-                <input
-                    type="text"
-                    placeholder="Descripción"
-                    value={descripcion}
-                    onChange={(e) => setDescripcion(e.target.value)}
-                    className="controls"
-                />
-                <button onClick={agregarMedicamento} className="add-button">Agregar</button>
-                <button onClick={ordenarMedicamentosPorFecha} className="add-button">Ordenar por fecha</button>
-            </div>
-        </div>
-    );
+    obtenerPerfilCanino();
+  }, [id]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleFileInputChange = (e, fieldName) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      const fileData = event.target.result;
+      setFormData({
+        ...formData,
+        [fieldName]: fileData,
+      });
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put(`http://A-PHZ2-CIDI-005:5000/api/caninos/${id}`, formData);
+      navigate(`/PerfilMascota?id=${id}`);
+    } catch (error) {
+      console.error('Error al editar el perfil:', error);
+    }
+  };
+
+  return (
+    <div>
+      <FlechaVolver />
+      <Logos />
+      <NavBar />
+      <h1>Editar Perfil</h1>
+      {isLoading ? (
+        <p>Cargando...</p>
+      ) : (
+        <form className="letraNegra" onSubmit={handleSubmit}>
+          <div>
+            <label>Nombre:</label>
+            <input
+              type="text"
+              name="nombre"
+              className="controls"
+              placeholder="Nombre"
+              value={formData.nombre}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <label>Raza:</label>
+            <input
+              type="text"
+              name="raza"
+              className="controls"
+              placeholder="Raza"
+              value={formData.raza}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <label>Fecha de Nacimiento:</label>
+            <input
+              type="Date"
+              name="fechaNacimiento"
+              className="controls"
+              placeholder="Fecha de Nacimiento"
+              value={formData.fechaNacimiento}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <label>Descripción:</label>
+            <input
+              type="text"
+              name="descripcion"
+              className="controls"
+              placeholder="Descripcion"
+              value={formData.descripcion}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <label>Peso en kilos:</label>
+            <input
+              type="text"
+              name="peso"
+              className="controls"
+              placeholder="Peso (kg)"
+              value={formData.peso}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <label>Partida de Nacimiento:</label>
+            <input
+              type="file"
+              name="partidaNacimiento"
+              className="controls"
+              onChange={(e) => handleFileInputChange(e, 'partidaNacimiento')}
+            />
+          </div>
+          <div>
+            <label>Carnet de Vacunación:</label>
+            <input
+              type="file"
+              name="carnetVacunacion"
+              className="controls"
+              onChange={(e) => handleFileInputChange(e, 'carnetVacunacion')}
+            />
+          </div>
+          <Link to="/PerfilMascota">
+            <button type="submit" className="botons">
+              Guardar Cambios
+            </button>
+          </Link>
+        </form>
+      )}
+    </div>
+  );
 }
+
+export default EditarPerfilCanino;
