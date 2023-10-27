@@ -1,0 +1,39 @@
+/* Estilos para el formulario y sus elementos */
+form {
+    text-align: center; /* Alinea el contenido del formulario al centro. */
+}
+
+.letraNegra {
+    color: #000; /* Color del texto en negro. Puedes ajustarlo según tus preferencias. */
+}
+
+.titulo {
+    color: #000;
+    margin-bottom: 0%;
+}
+
+.controls {
+    margin-bottom: 0%; /* Agrega un margen inferior a los elementos de entrada (inputs y select). */
+}
+
+.Div-Form{
+    margin-bottom: 20%;
+}
+
+.botons {
+    background-color: #3498db; /* Color de fondo del botón. Puedes ajustarlo según tus preferencias. */
+    color: #fff; /* Color del texto en el botón. */
+    padding: 10px 20px; /* Ajusta el relleno del botón según tus preferencias. */
+    border: none;
+}
+
+/* Estilos para el mapa */
+#map-container {
+    text-align: center; /* Alinea el mapa al centro. */
+    margin-bottom: 20%; /* Agrega un margen superior para mover el mapa hacia arriba en la pantalla. */
+}
+
+/* Estilos para el mensaje de coordenadas */
+.popup-content {
+    text-align: center;
+}

@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FaDog, FaAngleDown } from 'react-icons/fa';
-
 import NavBar from "./NavBar";
 import Mapa from "./Mapa";
 import Saludo from "./Saludo";
