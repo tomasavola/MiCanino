@@ -126,3 +126,18 @@ RequestError: Invalid object name 'Usuarios'. AT UsuarioLoginService/GetUsuarioB
 RequestError: Invalid object name 'Usuarios'. AT UsuarioLoginService/GetUsuarioByNamePassword
 ConnectionError: Login failed for user 'Mascota'. AT UsuarioLoginService/GetUsuarioByNamePassword
 ConnectionError: Login failed for user 'Mascota'. AT UsuarioLoginService/GetUsuarioByNamePassword
+ConnectionError: Login failed for user 'Mascota'.
+ConnectionError: Login failed for user 'Mascota'. AT UsuarioLoginService/GetUsuarioByNamePassword
+ReferenceError: datos is not defined AT UsuarioLoginService/GetUsuarioByNamePassword
+ReferenceError: datos is not defined AT UsuarioLoginService/GetUsuarioByNamePassword
+ReferenceError: datos is not defined AT UsuarioLoginService/GetUsuarioByNamePassword
+ReferenceError: datos is not defined AT UsuarioLoginService/GetUsuarioByNamePassword
+ReferenceError: datos is not defined AT UsuarioLoginService/GetUsuarioByNamePassword
+ReferenceError: datos is not defined AT UsuarioLoginService/GetUsuarioByNamePassword
+ReferenceError: datos is not defined AT UsuarioLoginService/GetUsuarioByNamePassword
+ReferenceError: i is not defined AT UsuarioLoginService/GetUsuarioByNamePassword
+ReferenceError: Mascotas is not defined AT UsuarioLoginService/GetUsuarioByNamePassword
+ReferenceError: Mascotas is not defined AT UsuarioLoginService/GetUsuarioByNamePassword
+ReferenceError: Mascotas is not defined AT UsuarioLoginService/GetUsuarioByNamePassword
+RequestError: Incorrect syntax near '.'. AT UsuarioLoginService/GetUsuarioByNamePassword
+RequestError: Incorrect syntax near '.'. AT UsuarioLoginService/GetUsuarioByNamePassword
