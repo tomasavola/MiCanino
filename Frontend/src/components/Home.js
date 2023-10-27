@@ -12,43 +12,64 @@ import Host from "./Host";
 export default function Home() {
     const { caninoId } = useParams();
     const [canino, setCanino] = useState({ nombre: '' });
-  
-    
-    const userId = 'usuario_autenticado';
-  
+    const [mascotas, setMascotas] = useState([]);
+    const [userId, setUserId] = useState(null);
+
     useEffect(() => {
+        // Obtén el ID del usuario desde el almacenamiento local (localStorage)
+        const storedUserId = localStorage.getItem('userId');
+        if (storedUserId) {
+            setUserId(storedUserId);
+        }
+
         axios
-          .get(`http://${Host}:5000/api/usuario/${userId}`)
-          .then((result) => {
-            const caninoIdAsociado = result.data.caninoId;
-            console.log("caninoIdAsociado:", caninoIdAsociado); // Agrega esta línea para depurar
-      
-            axios
-              .get(`http://${Host}:5000/api/caninos/${caninoIdAsociado}`)
-              .then((caninoResult) => {
-                setCanino(caninoResult.data);
-              })
-              .catch((error) => {
+            .get(`http://${Host}:5000/api/usuario/${userId}`)
+            .then((result) => {
+                const caninoIdAsociado = result.data.caninoId;
+                console.log("caninoIdAsociado:", caninoIdAsociado);
+
+                axios
+                    .get(`http://${Host}:5000/api/caninos/${caninoIdAsociado}`)
+                    .then((caninoResult) => {
+                        setCanino(caninoResult.data);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+
+                axios
+                    .get(`http://${Host}:5000/api/mascotas/${userId}`)
+                    .then((mascotasResult) => {
+                        setMascotas(mascotasResult.data);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            })
+            .catch((error) => {
                 console.log(error);
-              });
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }, [caninoId]);
+            });
+    }, [caninoId, userId]);
+
     return (
-      <div>
-        <div className="FotoYCambioCanino">
-          <Link to="/PerfilMascota"><FaDog size={50} /></Link>
-          <Link to="/Home">{canino.nombre}</Link> {/* Accede al nombre del canino */}
-          <FaAngleDown className="FlechaInfo" size={30} />
+        <div>
+            <div className="FotoYCambioCanino">
+                <Link to="/PerfilMascota"><FaDog size={50} /></Link>
+                <Link to="/Home">{canino.nombre}</Link>
+                <FaAngleDown className="FlechaInfo" size={30} />
+            </div>
+            <Logos />
+            <Saludo />
+            <Mapa />
+            <NavBar />
+            <div>
+                <h2>Mis Mascotas:</h2>
+                <ul>
+                    {mascotas.map((mascota) => (
+                        <li key={mascota.Id}>{mascota.Nombre}</li>
+                    ))}
+                </ul>
+            </div>
         </div>
-        <Logos />
-        <Saludo />
-        <Mapa />
-        <NavBar />
-      </div>
     );
-  }
-
-
+}
