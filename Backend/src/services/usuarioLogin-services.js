@@ -23,7 +23,6 @@ export default class UsuarioLoginService {
                         LEFT JOIN Mascota ON Mascota.Id = UsuariosXMascotas.IdMascota
                         WHERE Usuario.Mail = @pEmail AND Usuario.Password = @pPassWord`);
             datos = result.recordsets[0];
-           
             returnUsuario = {
                 Id          : datos[0].Id,
                 Nombre      : datos[0].Nombre,
@@ -37,37 +36,16 @@ export default class UsuarioLoginService {
             if (datos.length >= 1 ){
                 for (let i=0; i< datos.length; i++ ){
                     console.log(i);
-                    console.log(datos[i].MascotaId);
-                    console.log(datos[i].MascotaNombre);
+                    console.log(datos[i].MascotaId + " EESTOY EN EL IF DEL SERVICE" );
+                    console.log(datos[i].MascotaNombre + " EESTOY EN EL IF DEL SERVICE" );
                     
                     returnUsuario.Mascotas.push({
                         Id      : datos[i].MascotaId,
                         Nombre  : datos[i].MascotaNombre
                     })
-                    /**
-                     Mascotas.push({
-                        Id : datos[i].Id
-                        Nombre : datos[i].Nombre
-                        FechaNacimiento = : datos[i].FechaNacimiento
-                        IdRaza = : datos[i].IdRaza
-                        Descripcion = : datos[i].Descripcion
-                        Peso = : datos[i].Peso
-                        Foto = : datos[i].Foto
-                        PartidaNacimiento = : datos[i].PartidaNacimiento
-                        CarnetVacunacion = : datos[i].CarnetVacunacion
-                    })
-                    */
+                    
                 }
             }
-            
-            /*
-            datos= [
-                    Id	Nombre	Apellido	Mail	Telefono	Password	Id	IdMascota	IdUsuario	EnAdopcion	Id	Nombre	FechaNacimiento	IdRaza	Descripcion	Peso	Foto	PartidaNacimiento	CarnetVacunacion
-                    2	Ivan	Kwiat	Ivan@gmail.com	11155555	1231231	1	1	2	0	1	Gaudi	NULL	4	NULL	NULL	NULL	NULL	NULL
-                    2	Ivan	Kwiat	Ivan@gmail.com	11155555	1231231	4	4	2	1	4	Lassie	NULL	47	Lassie	190	NULL	NULL	NULL   
-                ]
-            */
-            //returnUsuario = result.recordsets[0][0];
         } catch (e) {
             console.log(e);
             CopiaError(e.toString() + " AT UsuarioLoginService/GetUsuarioByNamePassword");

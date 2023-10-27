@@ -141,3 +141,4 @@ ReferenceError: Mascotas is not defined AT UsuarioLoginService/GetUsuarioByNameP
 ReferenceError: Mascotas is not defined AT UsuarioLoginService/GetUsuarioByNamePassword
 RequestError: Incorrect syntax near '.'. AT UsuarioLoginService/GetUsuarioByNamePassword
 RequestError: Incorrect syntax near '.'. AT UsuarioLoginService/GetUsuarioByNamePassword
+TypeError: Cannot read properties of undefined (reading 'Id') AT UsuarioLoginService/GetUsuarioByNamePassword
