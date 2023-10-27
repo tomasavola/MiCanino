@@ -90,13 +90,11 @@ export default function FormularioServicio({ onAgregarServicio }) {
                         attribution="OpenStreetMap"
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-                    {latitud !== 0 && longitud !== 0 && (
                         <Marker position={[latitud, longitud]}>
                             <Popup>
                                 Latitud: {latitud}, Longitud: {longitud}
                             </Popup>
                         </Marker>
-                    )}
                 </MapContainer>
 
                 <button type="submit" className="botons">Continuar</button>
