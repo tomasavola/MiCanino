@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { MapContainer, TileLayer, Marker, Popup, MapConsumer } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, MapConsumer, useMapEvents } from 'react-leaflet';
 import './FormServicio.css';
 import 'leaflet/dist/leaflet.css';
 import L from "leaflet"; // Importa la biblioteca Leaflet
@@ -26,9 +26,11 @@ export default function FormularioServicio({ onAgregarServicio }) {
             navigator.geolocation.getCurrentPosition((position) => {
                 setLatitud(position.coords.latitude);
                 setLongitud(position.coords.longitude);
+                
             });
         }
     }, []);
+
 
     async function crearServicio(event) {
         event.preventDefault();
@@ -67,41 +69,30 @@ export default function FormularioServicio({ onAgregarServicio }) {
         navigate('/FormularioServicio2');
     }
 
-    async function handleMapClick(event) {
-        
-        console.log("Map clicked at:", event.latlng);
-        const { lat, lng } = event.latlng;
-        // Reverse geocoding API or service URL (replace with your chosen provider)
-        const reverseGeocodingURL = `https://api.geoapify.com/v1/geocode/reverse?lat=${event.latlng.lat}&lon=${event.latlng.lng}&apiKey=95de660bd194404e80f3afa9516de993`;
-        try {
-            const response = await fetch(reverseGeocodingURL);
-            if (response.ok) {
-                const data = await response.json();
-                const formattedAddress = data.features[0]?.properties.formatted;
-                console.log(data)
+    function MyMap() {
+        const [loc, setLoc] = useState(null);
 
+        const map = useMapEvents({
 
-                setDireccion(formattedAddress);
+            click: (e) => {
+                setLoc(e.latlng);
+                setLatitud(e.latlng.lat);
+                setLongitud(e.latlng.lng);
 
-                const newMarker = {
-                    position: [lat, lng],
-                    popupContent: formattedAddress,
-                };
+                fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${latitud}&lon=${longitud}&apiKey=95de660bd194404e80f3afa9516de993`)
+                    .then(response => response.json())
+                    .then(result => {
+                        const formattedAddress = result.features[0].properties.formatted;
+                        console.log(formattedAddress);
+                        setDireccion(formattedAddress);
 
-                // Agrega el nuevo marcador a la lista de marcadores
-                setMarkers([...markers, newMarker]);
+                    });
+            },
+        });
 
-            }
-
-        }
-
-        catch (error) {
-            console.error("Error in reverse geocoding:", error);
-        }
-
-        setLatitud(lat);
-        setLongitud(lng);
+        ;
     }
+
 
     return (
         <div className="Div-Form">
@@ -120,18 +111,16 @@ export default function FormularioServicio({ onAgregarServicio }) {
                     <option value="Veterinaria">Veterinaria</option>
                 </select>
                 <label className="letraNegra">Dirección</label>
-                <input type="text" name="direccion" className="controls" placeholder="Dirección" onChange={(e) => setDireccion(e.target.value)} />
+                <input type="text" name="direccion" className="controls" placeholder={direccionState} onChange={(e) => setDireccion(e.target.value)} />
                 {latitud !== 0 && longitud !== 0 ? (
-                    <MapContainer center={[latitud, longitud]} zoom={12} style={{ height: "300px", width: "100%" }} onClick={handleMapClick} >
+                    <MapContainer center={[latitud, longitud]} zoom={12} style={{ height: "300px", width: "100%" }} >
                         <TileLayer
                             attribution="OpenStreetMap"
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+
                         />
-                        {markers.map((marker, index) => (
-                            <Marker key={index} position={marker.position}>
-                                <Popup>{marker.popupContent}</Popup>
-                            </Marker>
-                        ))}
+                        <MyMap />
+
 
                     </MapContainer>
                 ) : (
