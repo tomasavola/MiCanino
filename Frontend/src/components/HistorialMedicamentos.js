@@ -13,9 +13,9 @@ export default function HistorialMedicamentos() {
     const [descripcion, setDescripcion] = useState('');
 
     useEffect(() => {
-        // Recuperar medicamentos desde la API al cargar la página
-        axios.get(`http://${Host}:5000/api/historial/`)
+        axios.get(`http://${Host()}:5000/api/historial/`)
             .then(response => {
+                console.log(response.data); // Agrega esta línea
                 setMedicamentos(response.data);
             })
             .catch(error => {
@@ -26,30 +26,37 @@ export default function HistorialMedicamentos() {
     const agregarMedicamento = () => {
         if (medicamento && fecha && descripcion) {
             const nuevoMedicamento = {
-                medicamento,
-                fecha,
-                descripcion,
+                medicamento: medicamento,
+                fecha: fecha,
+                descripcion: descripcion
             };
+            console.log('nuevoMedicamento')
+            console.log(nuevoMedicamento)
             // Enviar el nuevo medicamento a la API
-            axios.post(`http://${Host}:5000/api/historial?`, nuevoMedicamento)
+            let url = `http://${Host()}:5000/api/historial?`;
+            console.log(url)
+            axios.post(url, nuevoMedicamento)
                 .then(response => {
-                    console.log(response.status);
+                    console.log(response);
                     // Recargar la lista de medicamentos desde la API
-                    axios.get(`http://${Host}:5000/api/historial/`)
+                    axios.get(`http://${Host()}:5000/api/historial/`)
                         .then(response => {
                             setMedicamentos(response.data);
                         })
                         .catch(error => {
                             console.log(error);
                         });
-                })
+                })  
                 .catch(error => {
                     console.log(error);
                 });
-
+    
             setMedicamento('');
             setFecha('');
             setDescripcion('');
+        }else{
+            console.log('Errores')
+        
         }
     };
 
@@ -61,14 +68,15 @@ export default function HistorialMedicamentos() {
             setDescripcion(medicamentoAEditar.descripcion);
         }
     };
-
+    
     const eliminarMedicamento = (id) => {
         // Eliminar el medicamento de la API
-        axios.delete(`http://${Host}:5000/api/historial/${id}`)
+        console.log(id)
+        axios.delete(`http://${Host()}:5000/api/historial/${id}`)
             .then(response => {
                 console.log(response.status);
                 // Recargar la lista de medicamentos desde la API
-                axios.get(`http://${Host}:5000/api/historial`)
+                axios.get(`http://${Host()}:5000/api/historial`)
                     .then(response => {
                         setMedicamentos(response.data);
                     })
