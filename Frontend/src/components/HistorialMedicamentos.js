@@ -56,7 +56,6 @@ export default function HistorialMedicamentos() {
             setDescripcion('');
         }else{
             console.log('Errores')
-        
         }
     };
 
@@ -104,16 +103,17 @@ export default function HistorialMedicamentos() {
             <h1 className="TituloMedicamento">Historial de Medicamentos</h1>
             <table>
                 <tbody>
-                    {medicamentos.map(med => (
+                    {medicamentos.map((med) => (
+                        
                         <tr key={med.id}>
-                            <td className="letraNegra">{med.medicamento}</td>
-                            <td className="letraNegra">{med.fecha}</td>
-                            <td className="letraNegra">{med.descripcion}</td>
+                            <td className="letraNegra">{med.Medicamento}</td>
+                            <td className="letraNegra">{med.Fecha}</td>
+                            <td className="letraNegra">{med.Descripcion}</td>
                             <td className="actions">
-                                <button className='edit-button' onClick={() => editarMedicamento(med.id)}>
+                                <button className='edit-button' onClick={() => editarMedicamento(med.Id)}>
                                     <RiEdit2Line className="edit-icon" size={17} />
                                 </button>
-                                <button className='delete-button' onClick={() => eliminarMedicamento(med.id)}>
+                                <button className='delete-button' onClick={() => eliminarMedicamento(med.Id)}>
                                     <RiDeleteBin2Line className="delete-icon" size={17} />
                                 </button>
                             </td>
