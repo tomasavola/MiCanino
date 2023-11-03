@@ -11,51 +11,33 @@ import Host from "./Host";
 
 export default function Home() {
     const { caninoId } = useParams();
-    const [canino, setCanino] = useState({ nombre: '' });
-    const [mascotas, setMascotas] = useState([]);
+    const [userData, setUserData] = useState({ nombre: '', mascotas: [] });
     const [userId, setUserId] = useState(null);
 
     useEffect(() => {
-        // Obtén el ID del usuario desde el almacenamiento local (localStorage)
         const storedUserId = localStorage.getItem('userId');
         if (storedUserId) {
             setUserId(storedUserId);
+
+            axios
+
+                /*.get(`http://${Host}:5000/api/userData/${userId}`)*/
+                .get(`http://${Host}:5000/api/login`)
+                .then((result) => {
+                    const userData = result.data;
+                    setUserData(userData);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         }
-
-        axios
-            .get(`http://${Host}:5000/api/usuario/${userId}`)
-            .then((result) => {
-                const caninoIdAsociado = result.data.caninoId;
-                console.log("caninoIdAsociado:", caninoIdAsociado);
-
-                axios
-                    .get(`http://${Host}:5000/api/caninos/${caninoIdAsociado}`)
-                    .then((caninoResult) => {
-                        setCanino(caninoResult.data);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-
-                axios
-                    .get(`http://${Host}:5000/api/mascotas/${userId}`)
-                    .then((mascotasResult) => {
-                        setMascotas(mascotasResult.data);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-            })
-            .catch((error) => {
-                console.log(error);
-            });
     }, [caninoId, userId]);
 
     return (
         <div>
             <div className="FotoYCambioCanino">
                 <Link to="/PerfilMascota"><FaDog size={50} /></Link>
-                <Link to="/Home">{canino.nombre}</Link>
+                <Link to="/Home">{userData.nombre}</Link>
                 <FaAngleDown className="FlechaInfo" size={30} />
             </div>
             <Logos />
@@ -65,7 +47,8 @@ export default function Home() {
             <div>
                 <h2>Mis Mascotas:</h2>
                 <ul>
-                    {mascotas.map((mascota) => (
+                    {userData.mascotas.map((mascota) => (
+                        console.log("VIENDO LO DEL NOMBRE " + mascota.id),
                         <li key={mascota.Id}>{mascota.Nombre}</li>
                     ))}
                 </ul>
