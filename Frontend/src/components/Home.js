@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FaDog, FaAngleDown } from 'react-icons/fa';
 import NavBar from "./NavBar";
@@ -10,34 +8,29 @@ import Logos from "./Logos";
 import Host from "./Host";
 
 export default function Home() {
-    const { caninoId } = useParams();
-    const [userData, setUserData] = useState({ nombre: '', mascotas: [] });
-    const [userId, setUserId] = useState(null);
+    const [userData, setUserData] = useState({ Nombre: '', Mascotas: [] });
 
-    useEffect(() => {
-        const storedUserId = localStorage.getItem('userId');
-        if (storedUserId) {
-            setUserId(storedUserId);
+    useEffect(() =>  {
+        console.log("ESTOY EN HOME")
+        const fetchData = async () => {
+            const storedUserData = localStorage.getItem('userData');
 
-            axios
-
-                /*.get(`http://${Host}:5000/api/userData/${userId}`)*/
-                .get(`http://${Host}:5000/api/login`)
-                .then((result) => {
-                    const userData = result.data;
-                    setUserData(userData);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+            if (storedUserData) {
+                const userData = JSON.parse(storedUserData);
+                setUserData(userData);
+            }  else {
+                console.log("NO TENGO EL storedUserData")
+            }
         }
-    }, [caninoId, userId]);
+        fetchData();
+    }, []);
 
     return (
         <div>
+            {/* Encabezado con icono de mascota, nombre y flecha */}
             <div className="FotoYCambioCanino">
                 <Link to="/PerfilMascota"><FaDog size={50} /></Link>
-                <Link to="/Home">{userData.nombre}</Link>
+                <Link to="/Home">{userData.Nombre}</Link>
                 <FaAngleDown className="FlechaInfo" size={30} />
             </div>
             <Logos />
@@ -47,8 +40,8 @@ export default function Home() {
             <div>
                 <h2>Mis Mascotas:</h2>
                 <ul>
-                    {userData.mascotas.map((mascota) => (
-                        console.log("VIENDO LO DEL NOMBRE " + mascota.id),
+                    {userData.Mascotas.map((mascota) => (
+                        // Lista de mascotas
                         <li key={mascota.Id}>{mascota.Nombre}</li>
                     ))}
                 </ul>

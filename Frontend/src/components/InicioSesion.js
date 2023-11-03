@@ -3,16 +3,16 @@ import { useNavigate } from "react-router-dom";
 import Host from "./Host";
 
 export default function InicioSesion() {
-    const [mailState, setMail] = useState('');
-    const [passwordState, setPassword] = useState('');
-    const [idUsuario, setIdUsuario] = useState('');
+    const [mailState, setMail] = useState('rata@gmail.com');
+    const [passwordState, setPassword] = useState('rata123');
+    const [sessionUsuario, setSessionUsuario] = useState(null);
     const navigate = useNavigate();
 
     async function ingresarCuenta(event) {
         event.preventDefault();
 
         try {
-            const response = await fetch("http://A-PHZ2-CIDI-005:5000/api/login", {
+            const response = await fetch(`http://${Host()}:5000/api/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -25,8 +25,12 @@ export default function InicioSesion() {
 
             if (response.ok) {
                 const userData = await response.json();
-                const userId = userData.id; 
-                setIdUsuario(userId);
+
+                // Guardar el objeto JSON en el LocalStorage
+                localStorage.setItem('userData', JSON.stringify(userData));
+
+                console.log('Guardando en el LocalStorage');
+                console.log(userData);
                 navigate('/Home');
             } else {
                 alert("Credenciales incorrectas");
@@ -34,28 +38,16 @@ export default function InicioSesion() {
         } catch (error) {
             console.error("Error al iniciar sesión:", error);
         }
-
-        fetch('http://A-PHZ2-CIDI-005:5000/api/login')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('La solicitud no fue exitosa');
-    }
-    return response.json();
-  })
-  .then(data => {
-    
-  })
-  .catch(error => {
-    console.error('Error al realizar la solicitud:', error);
-  });
     }
 
     return (
         <form onSubmit={ingresarCuenta}>
+            {/* Campos de entrada para correo electrónico y contraseña */}
             <label className="letraNegra">Correo electrónico</label>
             <input type="text" name="mail" placeholder="Correo" className="controls" onChange={(e) => setMail(e.target.value)} />
             <label className="letraNegra">Contraseña</label>
             <input type="password" name="password" placeholder="Contraseña" className="controls" onChange={(e) => setPassword(e.target.value)} />
+            {/* Botón para iniciar sesión */}
             <button type="submit" className="botons">Iniciar sesión</button>
         </form>
     );
