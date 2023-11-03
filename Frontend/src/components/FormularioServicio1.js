@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Mapa from './Mapa';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, MapConsumer } from 'react-leaflet';
 import './FormServicio.css';
+import 'leaflet/dist/leaflet.css';
+import L from "leaflet"; // Importa la biblioteca Leaflet
+
+
 
 export default function FormularioServicio({ onAgregarServicio }) {
     const [idState, setId] = useState(0);
@@ -11,11 +14,15 @@ export default function FormularioServicio({ onAgregarServicio }) {
     const [direccionState, setDireccion] = useState('');
     const [latitud, setLatitud] = useState(0);
     const [longitud, setLongitud] = useState(0);
+    const [markers, setMarkers] = useState([]);
+
     const navigate = useNavigate();
 
     // Obtén la geolocalización del usuario si está disponible
     useEffect(() => {
         if ("geolocation" in navigator) {
+            console.log("entre")
+
             navigator.geolocation.getCurrentPosition((position) => {
                 setLatitud(position.coords.latitude);
                 setLongitud(position.coords.longitude);
@@ -60,8 +67,38 @@ export default function FormularioServicio({ onAgregarServicio }) {
         navigate('/FormularioServicio2');
     }
 
-    function handleMapClick(event) {
+    async function handleMapClick(event) {
+        
+        console.log("Map clicked at:", event.latlng);
         const { lat, lng } = event.latlng;
+        // Reverse geocoding API or service URL (replace with your chosen provider)
+        const reverseGeocodingURL = `https://api.geoapify.com/v1/geocode/reverse?lat=${event.latlng.lat}&lon=${event.latlng.lng}&apiKey=95de660bd194404e80f3afa9516de993`;
+        try {
+            const response = await fetch(reverseGeocodingURL);
+            if (response.ok) {
+                const data = await response.json();
+                const formattedAddress = data.features[0]?.properties.formatted;
+                console.log(data)
+
+
+                setDireccion(formattedAddress);
+
+                const newMarker = {
+                    position: [lat, lng],
+                    popupContent: formattedAddress,
+                };
+
+                // Agrega el nuevo marcador a la lista de marcadores
+                setMarkers([...markers, newMarker]);
+
+            }
+
+        }
+
+        catch (error) {
+            console.error("Error in reverse geocoding:", error);
+        }
+
         setLatitud(lat);
         setLongitud(lng);
     }
@@ -84,18 +121,24 @@ export default function FormularioServicio({ onAgregarServicio }) {
                 </select>
                 <label className="letraNegra">Dirección</label>
                 <input type="text" name="direccion" className="controls" placeholder="Dirección" onChange={(e) => setDireccion(e.target.value)} />
+                {latitud !== 0 && longitud !== 0 ? (
+                    <MapContainer center={[latitud, longitud]} zoom={12} style={{ height: "300px", width: "100%" }} onClick={handleMapClick} >
+                        <TileLayer
+                            attribution="OpenStreetMap"
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                        {markers.map((marker, index) => (
+                            <Marker key={index} position={marker.position}>
+                                <Popup>{marker.popupContent}</Popup>
+                            </Marker>
+                        ))}
 
-                <MapContainer center={[latitud, longitud]} zoom={12} style={{ height: "300px", width: "100%" }} onClick={handleMapClick}>
-                    <TileLayer
-                        attribution="OpenStreetMap"
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                        <Marker position={[latitud, longitud]}>
-                            <Popup>
-                                Latitud: {latitud}, Longitud: {longitud}
-                            </Popup>
-                        </Marker>
-                </MapContainer>
+                    </MapContainer>
+                ) : (
+                    <p>Cargando mapa...</p>
+                )}
+
+
 
                 <button type="submit" className="botons">Continuar</button>
             </form>
