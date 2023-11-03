@@ -23,7 +23,8 @@ export default class HistorialService {
 
     insert = async (filaNueva) => {
         let rowsAffected = 0;
-        console.log('insert')
+        console.log('HistorialService.insert')
+        console.log(filaNueva)
         try {
             let pool = await sql.connect(config);
             let result = await pool.request()

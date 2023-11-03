@@ -9,7 +9,8 @@ const router = new Router();
 router.post('/', async (req, res) => {
   try {
     let filaNueva = req.body;
-    console.log(filaNueva);
+    console.log('historialController.post')
+    console.log(filaNueva)
     let rowsAffected = await historialService.insert(filaNueva);
     res.status(200).json({ resultado: true });
   } catch (e) {
