@@ -29,23 +29,16 @@ export default function Home() {
         <div>
             {/* Encabezado con icono de mascota, nombre y flecha */}
             <div className="FotoYCambioCanino">
-                <Link to="/PerfilMascota"><FaDog size={50} /></Link>
-                <Link to="/Home">{userData.Nombre}</Link>
+                <Link to={`/PerfilMascota/${userData.Mascotas.length > 0 ? userData.Mascotas[0].Id : ''}`}>
+                    <FaDog size={50} />
+                </Link>
+                <Link to="/Home">{userData.Mascotas.length > 0 ? userData.Mascotas[0].Nombre : 'Sin mascotas'}</Link>
                 <FaAngleDown className="FlechaInfo" size={30} />
             </div>
             <Logos />
             <Saludo />
             <Mapa />
             <NavBar />
-            <div>
-                <h2>Mis Mascotas:</h2>
-                <ul>
-                    {userData.Mascotas.map((mascota) => (
-                        // Lista de mascotas
-                        <li key={mascota.Id}>{mascota.Nombre}</li>
-                    ))}
-                </ul>
-            </div>
         </div>
     );
 }

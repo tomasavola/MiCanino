@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Host from './Host';
 import NavBar from './NavBar';
 import Logos from './Logos';
 import FlechaVolver from './FlechaVolver';
 
 function PerfilMascota() {
+    const { id } = useParams(); // Obtén el ID del canino desde la URL
     const [data, setData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const obtenerPerfilCanino = async () => {
             try {
-                const response = await axios.get(`http://A-PHZ2-CIDI-005:5000/api/caninos/3`); // Reemplaza "3" con el ID del canino que deseas mostrar
+                console.log("holaaa", id)
+                const response = await axios.get(`http://A-PHZ2-CIDI-005:5000/api/caninos/${id}`);
                 setData(response.data);
                 setIsLoading(false);
             } catch (error) {
@@ -23,7 +25,7 @@ function PerfilMascota() {
         };
 
         obtenerPerfilCanino();
-    }, []);
+    }, [id]); // Asegúrate de que la solicitud se realice cuando cambie el ID
 
     return (
         <div>
@@ -42,7 +44,7 @@ function PerfilMascota() {
                     <p>Peso: {data.Peso} kg</p>
                     <p>Partida de Nacimiento: {data.PartidaNacimiento}</p>
                     <p>Carnet de Vacunación: {data.CarnetVacunacion}</p>
-                    <Link to={`/EditarPerfilCanino/${data.Id}`}> {/* Pasa el ID del canino a la página de edición */}
+                    <Link to={`/EditarPerfilCanino/${id}`}>
                         <button type="submit">Editar perfil</button>
                     </Link>
                 </div>

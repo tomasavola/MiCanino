@@ -274,7 +274,7 @@ function App() {
           </>
         } />
 
-        <Route path="/PerfilMascota" element={
+        <Route path="/PerfilMascota/:id"  component={PerfilMascota} element={
           <>
             <div className="container">
               <div className="row">
