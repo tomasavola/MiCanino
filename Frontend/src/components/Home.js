@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import { FaDog, FaAngleDown } from 'react-icons/fa';
 import NavBar from "./NavBar";
 import Mapa from "./Mapa";
-import Saludo from "./Saludo";
 import Logos from "./Logos";
 import Host from "./Host";
+import './Home.css'; // Importa tu archivo CSS
 
 export default function Home() {
-    const [userData, setUserData] = useState({ Nombre: '', Mascotas: [] });
+    const [userData, setUserData] = useState({ Nombre: '', Apellido:'', Mascotas: [] });
+    const [showMascotasDropdown, setShowMascotasDropdown] = useState(false);
 
     useEffect(() =>  {
         console.log("ESTOY EN HOME")
@@ -25,18 +26,41 @@ export default function Home() {
         fetchData();
     }, []);
 
+    const toggleMascotasDropdown = () => {
+        setShowMascotasDropdown(!showMascotasDropdown);
+    }
+
     return (
         <div>
-            {/* Encabezado con icono de mascota, nombre y flecha */}
+            {/* Encabezado con icono de mascota y nombre */}
             <div className="FotoYCambioCanino">
                 <Link to={`/PerfilMascota/${userData.Mascotas.length > 0 ? userData.Mascotas[0].Id : ''}`}>
                     <FaDog size={50} />
                 </Link>
-                <Link to="/Home">{userData.Mascotas.length > 0 ? userData.Mascotas[0].Nombre : 'Sin mascotas'}</Link>
+                <div className="NombreYFlecha" onClick={toggleMascotasDropdown}>
+                    <span className="NombreMascota">
+                        {userData.Mascotas.length > 0 ? userData.Mascotas[0].Nombre : 'Sin mascotas'}
+                    </span>
+                </div>
                 <FaAngleDown className="FlechaInfo" size={30} />
             </div>
+            {showMascotasDropdown && (
+                <div className="DropdownMascotas">
+                    <ul>
+                        {userData.Mascotas.map((mascota) => (
+                            <li key={mascota.Id}>
+                                <Link to={`/PerfilMascota/${mascota.Id}`}>
+                                    {mascota.Nombre}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
             <Logos />
-            <Saludo />
+            <div className="Saludo">
+                ¡Buenos días, {userData.Nombre} {userData.Apellido}!
+            </div>
             <Mapa />
             <NavBar />
         </div>
