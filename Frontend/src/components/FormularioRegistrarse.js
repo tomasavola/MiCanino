@@ -14,11 +14,11 @@ export default function FormularioRegistro({ onAgregarCuenta }) {
     event.preventDefault();
 
     const cuenta = {
-      nombre    : Nombre,
-      apellido  : Apellido,
-      mail      : Mail,
-      telefono  : Telefono,
-      password  : Password
+      nombre: Nombre,
+      apellido: Apellido,
+      mail: Mail,
+      telefono: Telefono,
+      password: Password
     };
     console.log("Cuenta:", JSON.stringify(cuenta));
     try {
@@ -31,6 +31,9 @@ export default function FormularioRegistro({ onAgregarCuenta }) {
       });
 
       if (response.ok) {
+        // Guardar la información del usuario en localStorage
+        localStorage.setItem('userData', JSON.stringify(cuenta));
+
         navigate("/BrindaServicio");
       } else {
         console.error("Error al registrar el usuario");
