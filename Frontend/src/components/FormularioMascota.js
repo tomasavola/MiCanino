@@ -1,72 +1,120 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function FormularioMascota({ onAgregarMascota }) {
+const FormularioMascota = () => {
+  const [Nombre, setNombre] = useState("Alejandro");
+  const [FechaNacimiento, setFechaNacimiento] = useState("");
+  const [Descripcion, setDescripcion] = useState("");
+  const [Peso, setPeso] = useState("");
+  const [Foto, setFoto] = useState("");
+  const [PartidaNacimiento, setPartidaNacimiento] = useState("");
+  const [CarnetVacunacion, setCarnetVacunacion] = useState("");
+  const [mascotas, setMascotas] = useState([]);
+  const navigate = useNavigate();
 
-    const [idState, setId] = useState(0);
-    const [nombreState, setNombre] = useState('');
-    const [fechaState, setFecha] = useState('');
-    const [idRazaState, setIdRaza] = useState('');
-    const [descripcionState, setDescripcion] = useState('');
-    const [pesoState, setPeso] = useState('');
-    /*const [fotoState, setFoto] = useState('');
-    const [PartidaState, setPartida] = useState('');
-    const [carnetState, setCarnet] = useState('');*/
-    const navigate = useNavigate();
+  const crearMascota = async (event) => {
+    event.preventDefault();
 
+    const mascota = {
+      nombre: Nombre,
+      fecha: FechaNacimiento,
+      descripcion: Descripcion,
+      peso: Peso,
+      foto: Foto,
+      partidaNacimiento: PartidaNacimiento,
+      carnetVacunacion: CarnetVacunacion,
+    };
+    console.log('mascota');
+    console.log(mascota);
 
-    function crearMascota(event) {
-
-        event.preventDefault();
-        setId(idState + 1)
-
-        let mascota = {
-            id: idState,
-            nombre: nombreState,
-            fecha: fechaState,
-            idRaza: idRazaState,
-            descripcion: descripcionState,
-            peso: pesoState,
-            /*foto: fotoState,
-            partida:PartidaState,
-            carnet:carnetState*/
-        }
-
-        onAgregarMascota(mascota)
-        agregarYNavegar();
+    try {
+      const response = await fetch("http://A-PHZ2-CIDI-005:5000/api/caninos/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(mascota),
+      });
+      const data = await response.json();
+      console.log("Respuesta del servidor:", data);
+      if (response.ok) {
+        console.log("Mascota registrada con éxito");
+        console.log("Se registró " + JSON.stringify(mascota));
+        setNombre("");
+        setFechaNacimiento("");
+        setDescripcion("");
+        setPeso("");
+        setFoto("");
+        setPartidaNacimiento("");
+        setCarnetVacunacion("");
+        // Redirigir a la página deseada
+        navigate("/Home");
+      } else {
+        console.error("Error al registrar la mascota");
+      }
+    } catch (error) {
+      console.error("Error de red:", error);
     }
+  };
 
-    function agregarYNavegar() {
-        navigate('/Home');
-    }
-   
 
-    /*<label>Foto</label> ESTO VA ABAJO EN EL FORM
-    <input type="file" name="foto" className="controls" placeholder="Inserte una foto del canino" onChange={(i) => setFoto(i.target.value)}/>
-    <label>Partida de nacimiento</label>  
-    <input type="file" name="partida" className="controls" placeholder="Inserte una foto de la partida de nacimiento del canino" onChange={(i) => setPartida(i.target.value)}></input>
-    <label>Carnet de vacunacion</label>  
-    <input type="file"name="carnet" className="controls" placeholder="Inserte una foto del carnet de vacunacion del canino" onChange={(i) => setCarnet(i.target.value)}></input> */
 
-    return (
-        <>
-            <form onSubmit={crearMascota}>
-                <center><h2 className="letraNegra">Información del canino</h2></center>
-                <br></br>
-                <label className="letraNegra">Nombre</label>
-                <input type="text" name="nombre" className="controls" placeholder="Nombre" onChange={(i) => setNombre(i.target.value)} />
-                <label className="letraNegra">Fecha de nacimiento</label>
-                <input type="Date" name="fecha" className="controls" placeholder="Fecha de nacimiento" onChange={(i) => setFecha(i.target.value)} />
-                <label className="letraNegra">Raza</label>
-                <input type="text" name="idRaza" className="controls" placeholder="Raza" onChange={(i) => setIdRaza(i.target.value)} />
-                <label className="letraNegra">Descripcion</label>
-                <textarea name="descripcion" className="controls" placeholder="Descripcion" onChange={(i) => setDescripcion(i.target.value)}></textarea>
-                <label className="letraNegra">Peso en kilos</label>
-                <input type="number" name="peso" className="controls" placeholder="Peso" onChange={(i) => setPeso(i.target.value)} />
+  return (
+    <>
+      <form onSubmit={crearMascota}>
+        <center>
+          <h2 className="letraNegra">Información del canino</h2>
+        </center>
+        <br />
 
-                <button type="submit" className="botons">Agregar Mascota</button>
-            </form>
-        </>
-    );
-}
+        <label className="letraNegra">Nombre</label>
+        <input
+          type="text"
+          name="nombre"
+          className="controls"
+          placeholder="Nombre"
+          value={Nombre}
+          onChange={(e) => setNombre(e.target.value)}
+          required
+        />
+
+        <label className="letraNegra">Fecha de nacimiento</label>
+        <input
+          type="date"
+          name="fechaNacimiento"
+          className="controls"
+          placeholder="Fecha de nacimiento"
+          value={FechaNacimiento}
+          onChange={(e) => setFechaNacimiento(e.target.value)}
+          required
+        />
+
+        <label className="letraNegra">Descripción</label>
+        <textarea
+          name="descripcion"
+          className="controls"
+          placeholder="Descripción"
+          value={Descripcion}
+          onChange={(e) => setDescripcion(e.target.value)}
+        ></textarea>
+
+        <label className="letraNegra">Peso en kilos</label>
+        <input
+          type="number"
+          name="peso"
+          className="controls"
+          placeholder="Peso"
+          value={Peso}
+          onChange={(e) => setPeso(e.target.value)}
+        />
+
+        <button type="submit" className="botons">
+          Agregar Mascota
+        </button>
+      </form>
+
+    </>
+  );
+};
+
+export default FormularioMascota;

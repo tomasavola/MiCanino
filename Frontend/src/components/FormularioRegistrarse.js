@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function FormularioRegistro({ onAgregarCuenta }) {
-  const [Nombre, setNombre] = useState("");
-  const [Apellido, setApellido] = useState("");
-  const [Mail, setMail] = useState("");
-  const [Telefono, setTelefono] = useState("");
-  const [Password, setPassword] = useState("");
+  const [Nombre, setNombre] = useState("Jose");
+  const [Apellido, setApellido] = useState("Gomez");
+  const [Mail, setMail] = useState("jose@gmail.com");
+  const [Telefono, setTelefono] = useState("1112344561");
+  const [Password, setPassword] = useState("jose");
 
   const navigate = useNavigate();
 

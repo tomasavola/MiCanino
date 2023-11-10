@@ -147,3 +147,4 @@ ConnectionError: Login failed for user 'Mascota'. AT UsuarioLoginService/GetUsua
 TypeError: Cannot read properties of undefined (reading 'Id') AT UsuarioLoginService/GetUsuarioByNamePassword
 TypeError: Cannot read properties of undefined (reading 'Id') AT UsuarioLoginService/GetUsuarioByNamePassword
 TypeError: Cannot read properties of undefined (reading 'Id') AT UsuarioLoginService/GetUsuarioByNamePassword
+TypeError: Cannot read properties of undefined (reading 'Id') AT UsuarioLoginService/GetUsuarioByNamePassword
