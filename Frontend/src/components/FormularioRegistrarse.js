@@ -14,13 +14,13 @@ export default function FormularioRegistro({ onAgregarCuenta }) {
     event.preventDefault();
 
     const cuenta = {
-      Nombre,
-      Apellido,
-      Mail,
-      Telefono,
-      Password,
+      nombre    : Nombre,
+      apellido  : Apellido,
+      mail      : Mail,
+      telefono  : Telefono,
+      password  : Password
     };
-console.log("VER REGISTRO" + cuenta)
+    console.log("Cuenta:", JSON.stringify(cuenta));
     try {
       const response = await fetch("http://A-PHZ2-CIDI-005:5000/api/usuario", {
         method: "POST",
