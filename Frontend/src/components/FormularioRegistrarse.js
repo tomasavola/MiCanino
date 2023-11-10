@@ -13,8 +13,6 @@ export default function FormularioRegistro({ onAgregarCuenta }) {
   async function crearCuenta(event) {
     event.preventDefault();
 
-    
-
     const cuenta = {
       Nombre,
       Apellido,
@@ -22,9 +20,8 @@ export default function FormularioRegistro({ onAgregarCuenta }) {
       Telefono,
       Password,
     };
-
-try {
-      
+console.log("VER REGISTRO" + cuenta)
+    try {
       const response = await fetch("http://A-PHZ2-CIDI-005:5000/api/usuario", {
         method: "POST",
         headers: {
@@ -44,6 +41,7 @@ try {
 
     onAgregarCuenta(cuenta);
 
+    // Restablecer estados locales
     setNombre("");
     setApellido("");
     setMail("");
