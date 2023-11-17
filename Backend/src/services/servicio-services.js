@@ -37,6 +37,21 @@ export default class ServicioService {
         return rowsAffected;
     }
 
+    getAllUbicaciones = async () => {
+        console.log("getAllUbicaciones")
+        let returnList = null;
+        try {
+            let pool = await sql.connect(config);
+            let result = await pool.request()
+                .query('SELECT Latitud, Longitud FROM Servicios');
+            returnList = result.recordset;
+        } catch (error) {
+            console.log(error);
+            Escribir(error);
+        }
+        return returnList;
+    }
+
 }
 
 

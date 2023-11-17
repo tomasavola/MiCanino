@@ -27,5 +27,14 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/', async (req, res) => {
+    try {
+        let direccion = await servicioService.getAllUbicaciones();
+        res.status(200).send(direccion);
+    } catch (e) {
+        console.log(e);
+        res.status(404).send('<p>No se encontro la direccion</p>');
+    }
+});
 
 export default router;                                                                                                                               
