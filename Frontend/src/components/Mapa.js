@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { Icon } from 'leaflet';
-import { FaMapMarkerAlt } from 'react-icons/fa';
+import axios from 'axios';
 
 import 'leaflet/dist/leaflet.css';
 import 'leaflet/dist/images/marker-icon-2x.png';
@@ -12,73 +12,24 @@ const Mapa = () => {
   const [filteredUbicaciones, setFilteredUbicaciones] = useState([]);
   const [userLocation, setUserLocation] = useState([-34.6037, -58.3816]);
 
+  const obtenerUbicacionesDesdeAPI = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/ubicacion/');
+      return response.data;
+    } catch (error) {
+      console.error('Error al obtener ubicaciones desde la API:', error);
+      return [];
+    }
+  };
+
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-        setUserLocation([latitude, longitude]);
-      },
-      (error) => {
-        console.error('Error obteniendo la ubicación del usuario:', error);
-      }
-    );
+    obtenerUbicacionesDesdeAPI().then((ubicaciones) => {
+      setFilteredUbicaciones(ubicaciones);
+    });
   }, []);
 
-  useEffect(() => {
-    const ubicaciones = [
-      {
-        id: 1,
-        nombre: 'Obelisco',
-        latitud: -34.6037,
-        longitud: -58.3816,
-      },
-      {
-        id: 2,
-        nombre: 'Cementerio de la Chacarita',
-        latitud: -34.5877631,
-        longitud: -58.4589195,
-      },
-      {
-        id: 3,
-        nombre: 'Patio de Messi',
-        latitud: 40.4530428,
-        longitud: -3.6909086,
-      },
-      {
-        id: 4,
-        nombre: 'La Bombonera',
-        latitud: -34.6356064,
-        longitud: -58.3696272,
-      },
-    ];
-
-    if (searchQuery === '') {
-      // Si el campo de búsqueda está vacío, mostramos todas las ubicaciones.
-      setFilteredUbicaciones(ubicaciones);
-    } else {
-      // Filtramos las ubicaciones en función del nombre ingresado.
-      const filteredLocations = ubicaciones.filter((location) =>
-        location.nombre.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      setFilteredUbicaciones(filteredLocations);
-    }
-  }, [searchQuery]);
-
-  // Define íconos para los marcadores.
   const customIcon = new Icon({
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/25/25613.png', // Reemplaza por la URL de tu ícono personalizado
-    iconSize: [32, 32],
-    iconAnchor: [16, 32],
-  });
-
-  const redIcon = new Icon({
     iconUrl: 'https://cdn-icons-png.flaticon.com/512/25/25613.png',
-    iconSize: [32, 32],
-    iconAnchor: [16, 32],
-  });
-
-  const blueIcon = new Icon({
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/25/25612.png',
     iconSize: [32, 32],
     iconAnchor: [16, 32],
   });
@@ -105,13 +56,15 @@ const Mapa = () => {
           )}
 
           {filteredUbicaciones.map((location) => (
-            <Marker
-              key={location.id}
-              position={[location.latitud, location.longitud]}
-              icon={customIcon} // Utiliza el mismo ícono para todas las ubicaciones.
-            >
-              <Popup>{location.nombre}</Popup>
-            </Marker>
+            location.latitud !== undefined && location.longitud !== undefined && (
+              <Marker
+                key={location.id}
+                position={[location.latitud, location.longitud]}
+                icon={customIcon}
+              >
+                <Popup>{location.nombre}</Popup>
+              </Marker>
+            )
           ))}
         </MapContainer>
       </div>
