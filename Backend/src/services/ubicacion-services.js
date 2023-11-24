@@ -12,6 +12,7 @@ export default class UbicacionService {
             let pool = await sql.connect(config);
             let result = await pool.request()
                 .query('SELECT * FROM Ubicaciones');
+                
             returnList = result.recordset;
         } catch (error) {
             console.log(error);
