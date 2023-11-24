@@ -14,8 +14,9 @@ const Mapa = () => {
 
   const obtenerUbicacionesDesdeAPI = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/ubicacion/');
-      return response.data;
+      const response = await fetch("http://A-PHZ2-CIDI-006:5000/api/ubicacion");
+      const data = await response.json();
+      return data;
     } catch (error) {
       console.error('Error al obtener ubicaciones desde la API:', error);
       return [];
@@ -55,7 +56,7 @@ const Mapa = () => {
             </Marker>
           )}
 
-          {filteredUbicaciones.map((location) => (
+          {filteredUbicaciones && filteredUbicaciones.map((location) => (
             location.latitud !== undefined && location.longitud !== undefined && (
               <Marker
                 key={location.id}

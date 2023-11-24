@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Host from "./Host";
 
 export default function InicioSesion() {
-    const [mailState, setMail] = useState('rata@gmail.com');
-    const [passwordState, setPassword] = useState('rata123');
+    const [mailState, setMail] = useState('');
+    const [passwordState, setPassword] = useState('');
     const [sessionUsuario, setSessionUsuario] = useState(null);
     const navigate = useNavigate();
 
@@ -12,7 +12,7 @@ export default function InicioSesion() {
         event.preventDefault();
 
         try {
-            const response = await fetch(`http://${Host()}:5000/api/login`, {
+            const response = await fetch("http://A-PHZ2-CIDI-006:5000/api/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
